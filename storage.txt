@@ -1,0 +1,1 @@
+{"image":"bsisa1-6410e5ff3f48e725717462.jpg","password":"$2y$13$Rv1Yzm1vWyFokNjY2jAELe8B69ZzbfTL\/aYJb5WfUPUAiAMZt.W6u","roles":"[\"ROLE_USER\"]","verified":0,"cin":"10121014","telephone":"12233","id":27,"nom":"ba","prenom":"nour","verification_code":"","email":"babderrahmennour@gmail.com"}
