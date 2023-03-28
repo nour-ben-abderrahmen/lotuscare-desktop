@@ -50,7 +50,7 @@
             </VBox>
             <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="18.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/logo.png" />
+                  <Image url="@../../assets/logo.png" />
                </image>
             </ImageView>
          </children>
@@ -64,7 +64,7 @@
          <children>
             <ImageView fx:id="navbar_img" fitHeight="54.0" fitWidth="54.0" layoutX="971.0" layoutY="5.0" onMouseClicked="#togglePopup" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/logo.png" />
+                  <Image url="@../../assets/logo.png" />
                </image>
             </ImageView>
          </children>
@@ -76,7 +76,7 @@
                <children>
                   <ImageView fx:id="userPopup_img" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/logo.png" />
+                        <Image url="@../../assets/logo.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="userPopup_fullname" layoutX="65.0" layoutY="12.0" text="Nour Ben Abdelrrahmen">

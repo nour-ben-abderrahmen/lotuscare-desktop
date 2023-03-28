@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="786.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="786.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <TextField fx:id="emailInput" layoutX="504.0" layoutY="236.0" prefHeight="43.0" prefWidth="265.0" promptText="Email">
          <font>
@@ -23,5 +22,6 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Button layoutX="683.0" layoutY="437.0" mnemonicParsing="false" onAction="#redirectToSignup" text="singup" />
    </children>
 </AnchorPane>

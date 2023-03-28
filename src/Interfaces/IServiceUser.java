@@ -5,6 +5,9 @@
  */
 package Interfaces;
 
+import Models.User;
+import java.sql.SQLException;
+
 /**
  *
  * @author Nour
@@ -13,4 +16,5 @@ public interface IServiceUser {
 
 
     public String login(String email, String password);
+    public void addUser(User user);
 }

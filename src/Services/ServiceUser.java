@@ -17,6 +17,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -101,6 +104,28 @@ public class ServiceUser implements IServiceUser {
         currentUser.setVerified(user.getVerified());
         currentUser.setImage(user.getImage());
         currentUser.setVerification_code(user.getVerification_code());
+    }
+
+    @Override
+    public void addUser(User user) {
+        
+
+
+	
+	
+	
+	
+
+        try {
+            Statement stm = cnx.createStatement();
+            String query = "INSERT INTO `user` (`id`, `nom`, `prenom`, `email`, `password`, `telephone`, `cin`, `roles`, `verified`, `image`, `verification_code`)"
+                    + "     VALUES (NULL, '" + user.getNom()+ "', '" + user.getPrenom()+ "', '" + user.getEmail()+ "', '" + user.getPassword()+ "', '" + user.getTelephone()+ "', '" + user.getCin()+ "', '" + user.getRoles()+ "', '0','" + user.getImage()+ "' ,' ')";
+
+            stm.executeUpdate(query);
+            System.out.println("User ajoutée");
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

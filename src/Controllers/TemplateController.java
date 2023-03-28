@@ -95,7 +95,7 @@ public class TemplateController implements Initializable {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Dashboard.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Dashboard.fxml"));
             anchor.getChildren().setAll(pane);
             dashBtn.setTextFill(Color.web("#696cff"));
             dashBtn.setStyle("-fx-background-color :#696cff29");
@@ -154,7 +154,7 @@ public class TemplateController implements Initializable {
     private void redirectToDashboard(ActionEvent event) {
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Dashboard.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Dashboard.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             dashBtn.setTextFill(Color.web("#696cff"));
@@ -169,7 +169,7 @@ public class TemplateController implements Initializable {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Users.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             usersBtn.setTextFill(Color.web("#696cff"));
@@ -184,7 +184,7 @@ public class TemplateController implements Initializable {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Forum.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Forum.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             forumBtn.setTextFill(Color.web("#696cff"));
@@ -199,7 +199,7 @@ public class TemplateController implements Initializable {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Event.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Event.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             eventBtn.setTextFill(Color.web("#696cff"));
@@ -214,7 +214,7 @@ public class TemplateController implements Initializable {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Produit.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Produit.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             produitBtn.setTextFill(Color.web("#696cff"));
@@ -233,7 +233,7 @@ public class TemplateController implements Initializable {
     private void redirectToProfile(ActionEvent event) {
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Profile.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Profile.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             userPopup.setVisible(!userPopup.visibleProperty().get());
