@@ -11,8 +11,8 @@ package Tools;
  */
 public class Statics {
     
-    public static String imgPath = "File:/C:/wamp64/www/img/";
-    public static String uploadDirectory = "C:/xampp/htdocs/img/";
+    public static String imgPath = "File:/C:/wamp64/www/Digi-Dreamers/public/uploads/users/";
+    public static String uploadDirectory = "C:/wamp64/www/Digi-Dreamers/public/uploads/users/";
 
 
  

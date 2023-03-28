@@ -5,6 +5,7 @@
  */
 package lotuscare;
 
+import Controllers.TemplateController;
 import Models.User;
 import Services.ServiceUser;
 import Tools.LocalStorage;
@@ -37,13 +38,13 @@ public class Lotuscare extends Application {
                 SU = new ServiceUser();
                 SU.updateCurrentUser(storedUser);
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Dashboard.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Template.fxml"));
                     Scene scene = new Scene(root, 1366, 768);
                     primaryStage.setTitle("Lotuscare");
                     primaryStage.setScene(scene);
                     primaryStage.show();
                 } catch (IOException ex) {
-                    System.out.println("GUI.FXMain.start()");
+                    Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 Parent root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));

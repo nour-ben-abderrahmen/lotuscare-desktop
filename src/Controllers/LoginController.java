@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
         String result = userService.login(emailInput.getText(), passwordInput.getText());
 
         if (result == "success") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Template.fxml"));
             Parent root = loader.load();
             emailInput.getScene().setRoot(root);
         }

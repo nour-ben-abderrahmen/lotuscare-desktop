@@ -12,7 +12,7 @@
     <jar href="lib\json-simple-1.1.1.jar" size="23737" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.28.jar" size="2476480" download="eager" />
     <jar href="lib\spring-security-crypto-5.6.1.jar" size="81570" download="eager" />
-    <jar href="lotuscare.jar" size="12971" download="eager" />
+    <jar href="lotuscare.jar" size="131235" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="lotuscare" >
     <param name="requiredFXVersion" value="8.0+"/>
