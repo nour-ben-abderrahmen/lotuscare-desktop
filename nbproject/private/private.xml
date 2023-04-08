@@ -5,8 +5,17 @@
         <group>
             <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Services/ServiceUser.java</file>
             <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/LoginController.java</file>
-            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/DashboardController.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/ProfileController.java</file>
             <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/SignupController.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Tools/LocalStorage.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Tools/LotuscareConnexion.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/lotuscare/Lotuscare.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/DashboardController.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/EventController.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/ForumController.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Tools/Statics.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/UsersController.java</file>
+            <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Controllers/TemplateController.java</file>
             <file>file:/C:/Users/Nour/Documents/NetBeansProjectsPi/lotuscare/src/Interfaces/IServiceUser.java</file>
         </group>
     </open-files>

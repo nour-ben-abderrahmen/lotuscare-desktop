@@ -40,7 +40,7 @@ public class SignupController implements Initializable {
     @FXML
     private TextField confirmPassword;
     @FXML
-    private TextField telephonrInput;
+    private TextField telephoneInput;
     @FXML
     private TextField cinInput;
     @FXML
@@ -83,7 +83,7 @@ public class SignupController implements Initializable {
         
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(13);
         String hashedPassword = passwordEncoder.encode(passwordInput.getText());
-        User utilisateur = new User(0, nomInput.getText(), prenomInput.getText(), emailInput.getText(), hashedPassword, telephonrInput.getText(), cinInput.getText(), "[\"ROLE_USER\"]", 0, newFileName, "");
+        User utilisateur = new User(0, nomInput.getText(), prenomInput.getText(), emailInput.getText(), hashedPassword, telephoneInput.getText(), cinInput.getText(), "[\"ROLE_USER\"]", 0, newFileName, "");
 
         SU.addUser(utilisateur);
         
