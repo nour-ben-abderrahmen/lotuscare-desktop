@@ -1,0 +1,1 @@
+{"image":"601882-1.jpg","password":"$2a$13$yj.voDdqR0ahArDpT7wWJuUtTNuUqsB4LVFms0VxfXXSvmocnwV\/q","roles":"[\"ROLE_USER\"]","verified":0,"cin":"12345678","telephone":"14785236","id":5,"nom":"aaa","prenom":"aaa","verification_code":" ","email":"aaa@aaa.com"}
