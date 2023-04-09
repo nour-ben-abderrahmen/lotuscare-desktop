@@ -5,21 +5,14 @@
  */
 package Services;
 import Models.Publication;
+import Tools.LotuscareConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import Tools.Statics;
-import Tools.LotuscareConnexion;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 
 /**
  *
@@ -47,45 +40,56 @@ public class ServicePublication implements Iservicepublication <Publication>{
             System.out.println(ex.getMessage());
         }    
     }
+    
      @Override
-    public ObservableList<Publication> affpub() {
-        ObservableList<Publication>pub=FXCollections.observableArrayList();
-        String sql="select * from publication";
-        try {
-            Statement ste=cnx.createStatement();
-            ResultSet sp= ste.executeQuery(sql);
-            while(sp.next()){
-                Publication p=new Publication(sp.getString(1), sp.getString(2));
-                pub.add(p);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+     public List<Publication> affpub() throws SQLException {
+        List<Publication> Publications = new ArrayList<>();
+        String req = "select * from publication";
+        Statement ste = cnx.createStatement();
+     
+        ResultSet rst = ste.executeQuery(req);
+
+        while (rst.next()) {
+            Publication re = new Publication( 
+                    rst.getString("code_pub"),
+                    rst.getString("contenu_pub")
+          );
+            Publications.add(re);
         }
-        return pub;  
+        return Publications;
+    }
+    
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
+    @Override
+    public void suppub(int id) throws SQLException {
+     
+     
+        int num  = id;
+
+         String req = "DELETE FROM publication WHERE id = ?";
+         PreparedStatement ps = cnx.prepareStatement(req);
+         ps.setInt(1, num);
+
+      // Exécution de la requête
+      int nbLignesSupprimees = ps.executeUpdate();
+      System.out.println("Nombre de lignes supprimées : " + nbLignesSupprimees);
     }
 
     @Override
-    public void suppub(Publication p) {
-        String sql="delete from publication where id=?";
-        try {
-            PreparedStatement ste=cnx.prepareStatement(sql);
-            ste.setInt(1, p.getId());
-            ste.executeUpdate();
+    public void editpub(Publication p) throws SQLException {
+    try {
+            String req = "UPDATE publication SET code_pub = '"+ p.getCode_pub()+ "',`contenu_pub` = '" +p.getContenu_pub()+ "' WHERE publication.`id` = " +p.getId();
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
+            System.out.println("publication updated !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }  
-    }
-
-    public void supppub(int id) {
-        String sql="delete from publication where id=?";
-        try{
-            PreparedStatement ste=cnx.prepareStatement(sql);
-            ste.setInt(1, id);
-            ste.executeUpdate();
-        }
-        catch(SQLException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
+}
     }
 }
+
+    

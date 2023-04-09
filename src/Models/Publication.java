@@ -29,6 +29,12 @@ public class Publication {
         this.contenu_pub = contenu_pub;
     }
 
+    public Publication(int id, String code_pub, String contenu_pub) {
+        this.id = id;
+        this.code_pub = code_pub;
+        this.contenu_pub = contenu_pub;
+    }
+
  
 
     public int getId() {
