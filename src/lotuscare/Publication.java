@@ -25,7 +25,7 @@ public class Publication extends Application {
     @Override
     public void start(Stage primaryStage) {
        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Forum.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/commentaire.fxml"));
             Scene scene = new Scene(root, 1366, 768);
             primaryStage.setTitle("Publication");
             primaryStage.setScene(scene);

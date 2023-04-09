@@ -36,9 +36,16 @@ public class Commentaire {
         this.publication_id = publication_id;
     }
 
-    public Commentaire(int id_R_modif, String text, String text0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Commentaire(int id, String contenu_comm, Publication publication_id) {
+        this.id = id;
+        this.contenu_comm = contenu_comm;
+        this.publication_id = publication_id;
     }
+
+    public Commentaire(String contenu_comm) {
+        this.contenu_comm = contenu_comm;
+    }
+
 
     public int getId() {
         return id;
@@ -76,9 +83,8 @@ public class Commentaire {
     public String toString() {
         return "Commentaire{" + "id=" + id + ", contenu_comm=" + contenu_comm + ", date_com=" + date_com + ", publication_id=" + publication_id + '}';
     }
-    
-    
-    }
+
+}
 
    
     

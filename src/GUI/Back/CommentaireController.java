@@ -61,8 +61,8 @@ public class CommentaireController implements Initializable {
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            idpub.setCellValueFactory(new PropertyValueFactory<Commentaire,Publication>("publication_id"));
-            contenucom.setCellValueFactory(new PropertyValueFactory<Commentaire,String>("contenu_comm"));
+            pub.setCellValueFactory(new PropertyValueFactory<Commentaire,Publication>("publication_id"));
+            com.setCellValueFactory(new PropertyValueFactory<Commentaire,String>("contenu_comm"));
            
             ObservableList<Commentaire> listU = FXCollections.observableArrayList();
             ServiceCommentaire ps=new ServiceCommentaire();
@@ -78,7 +78,11 @@ public class CommentaireController implements Initializable {
     @FXML
     
          private void addcom(ActionEvent event) {
-         Commentaire com= new Commentaire(contenucom.getText(),idpub.getText());
+             
+             ServicePublication pub= new ServicePublication();
+             Publication p1;
+             p1 = pub.getPubParId(Integer.parseInt(idpub.getText()));
+         Commentaire com= new Commentaire(contenucom.getText(),p1);
      
      ServiceCommentaire sp=new ServiceCommentaire();
      
@@ -94,24 +98,41 @@ public class CommentaireController implements Initializable {
          JOptionPane.showMessageDialog(null,"Commentaire supprimée"); 
     }
     
+         
+         
     @FXML
+    
+    
     private void editcom(ActionEvent event) throws SQLException {
-        
+        ServicePublication pub1= new ServicePublication();
+             Publication p1;
+              p1 = pub1.getPubParId(Integer.parseInt(idpub.getText()));
            ServiceCommentaire sr=new ServiceCommentaire();
        
            int id_R_modif = Integer.parseInt(id_modif2.getText()) ;  
            
-      Commentaire c=new Commentaire(id_R_modif,contenucom.getText(),idpub.getText());
+      Commentaire c=new Commentaire( id_R_modif,contenucom.getText(),p1);
        
-
+               System.out.println(c);
         sr.editcom(c);
  
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
            alert.setContentText("commentaire modifiée avec succès!");
-            JOptionPane.showMessageDialog(null,"commentaire modifiée avec succès!");
-        
+            JOptionPane.showMessageDialog(null,"commentaire modifiée avec succès!");     
+            pub.setCellValueFactory(new PropertyValueFactory<Commentaire,Publication>("publication_id"));
+            com.setCellValueFactory(new PropertyValueFactory<Commentaire,String>("contenu_comm"));
+           
+            ObservableList<Commentaire> listU = FXCollections.observableArrayList();
+            ServiceCommentaire ps=new ServiceCommentaire();
+           
+        try {
+            ps.affcom().forEach(r->{listU.add(r);});
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            listcom.setItems(listU);
     }
 
     @FXML

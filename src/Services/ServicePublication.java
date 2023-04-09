@@ -90,6 +90,27 @@ public class ServicePublication implements Iservicepublication <Publication>{
             System.out.println(ex.getMessage());
 }
     }
+    
+    public Publication getPubParId(int id) {
+    String sql = "SELECT * FROM publication WHERE id = ?";
+    PreparedStatement ste;
+    try {
+        ste = cnx.prepareStatement(sql);
+        ste.setInt(1, id);
+        ResultSet rs = ste.executeQuery();
+        if (rs.next()) {
+            Publication c = new Publication(
+                    rs.getInt("id"),
+                    rs.getString("code_pub"),
+                    rs.getString("contenu_pub")
+            );
+            return c;
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return null;
+}
 }
 
     

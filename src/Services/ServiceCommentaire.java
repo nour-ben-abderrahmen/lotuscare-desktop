@@ -34,7 +34,7 @@ public class ServiceCommentaire implements Iservicecommentaire <Commentaire>{
         try {
             ste = cnx.prepareStatement(sql);
             ste.setString(1, c.getContenu_comm());
-            ste.setString(2, c.getPublication_id());
+            ste.setInt(2, c.getPublication_id().getId());
             ste.executeUpdate();
             System.out.println("commentaire Ajoutée");
         } catch (SQLException ex) {
@@ -52,11 +52,12 @@ public class ServiceCommentaire implements Iservicecommentaire <Commentaire>{
         Statement ste = cnx.createStatement();
      
         ResultSet rst = ste.executeQuery(req);
-
+         
+        ServicePublication pub= new ServicePublication();
         while (rst.next()) {
             Commentaire re = new Commentaire( 
                     rst.getString("contenu_comm"),
-                    rst.getPublication("publication_id")
+                    pub.getPubParId(rst.getInt("publication_id"))
           );
             Commentaires.add(re);
         }
@@ -82,7 +83,7 @@ public class ServiceCommentaire implements Iservicecommentaire <Commentaire>{
     @Override
     public void editcom(Commentaire c) throws SQLException {
        try {
-            String req = "UPDATE commentaire SET contenu_comm = '"+ c.getContenu_comm()+ "',`publication_id` = '" +c.getPublication_id()+ "' WHERE commentaire.`id` = " +c.getId();
+            String req = "UPDATE commentaire SET contenu_comm = '"+ c.getContenu_comm()+ "',`publication_id` = '" +c.getPublication_id().getId()+ "' WHERE commentaire.`id` = " +c.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("commentaire updated !");
