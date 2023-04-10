@@ -87,7 +87,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="telephonrInput" layoutY="27.0" prefHeight="28.0" prefWidth="298.0" promptText="Telephone" />
+                        <TextField fx:id="telephoneInput" layoutY="27.0" prefHeight="28.0" prefWidth="298.0" promptText="Telephone" />
                      </children>
                   </Pane>
                   <Pane layoutY="260.0">

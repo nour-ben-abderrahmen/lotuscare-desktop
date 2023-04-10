@@ -71,7 +71,7 @@ public class ServiceUser implements IServiceUser {
                     updateCurrentUser(user);
                     try {
                         LocalStorage localStorage = new LocalStorage();
-                        localStorage.writeToStorage(user);
+                        localStorage.writeToStorage(user); //bech yokood dima connecté
                     } catch (IOException ex) {
                         System.out.println("failed init storage :" + ex.getMessage());
                     }
