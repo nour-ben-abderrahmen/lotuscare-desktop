@@ -56,6 +56,7 @@ public class ServiceCommentaire implements Iservicecommentaire <Commentaire>{
         ServicePublication pub= new ServicePublication();
         while (rst.next()) {
             Commentaire re = new Commentaire( 
+                    rst.getInt("id"),
                     rst.getString("contenu_comm"),
                     pub.getPubParId(rst.getInt("publication_id"))
           );

@@ -7,6 +7,7 @@ package lotuscare;
 
 import java.io.IOException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +21,14 @@ import javafx.stage.Stage;
  *
  * @author Omar
  */
-public class Publication extends Application {
+public class Commentaire extends Application {
     
     @Override
     public void start(Stage primaryStage) {
        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Forum.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Commentaire.fxml"));
             Scene scene = new Scene(root, 1366, 900);
-            primaryStage.setTitle("Publication");
+            primaryStage.setTitle("Commentaire");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

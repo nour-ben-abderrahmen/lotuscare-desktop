@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="873.0" prefWidth="1268.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.ForumBackController">
+   <children>
+      <TableView fx:id="tabc" layoutX="917.0" layoutY="94.0" onMouseClicked="#hand" prefHeight="685.0" prefWidth="308.0">
+        <columns>
+          <TableColumn fx:id="idcom" prefWidth="75.0" text="idcom" />
+          <TableColumn fx:id="pubc" prefWidth="75.0" text="pubc" />
+            <TableColumn fx:id="contenuc" prefWidth="157.0" text="contenuc" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tabp" layoutX="326.0" layoutY="94.0" onMouseClicked="#HandleMouseAction" prefHeight="685.0" prefWidth="308.0">
+         <columns>
+            <TableColumn fx:id="idp" prefWidth="75.0" text="idpub" />
+            <TableColumn fx:id="tpub" prefWidth="75.0" text="Titre" />
+            <TableColumn fx:id="contenup" prefWidth="157.0" text="Contenu" />
+         </columns>
+      </TableView>
+      <Label layoutX="152.0" layoutY="21.0" prefHeight="41.0" prefWidth="196.0" text="Gestion Forum:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="382.0" layoutY="42.0" prefHeight="41.0" prefWidth="196.0" text="Gestion Publications">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="973.0" layoutY="42.0" prefHeight="41.0" prefWidth="243.0" text="Gestion Commentaires">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idpc" layoutX="717.0" layoutY="199.0" />
+      <TextField fx:id="titrep" layoutX="107.0" layoutY="199.0" />
+      <TextField fx:id="id_modif" layoutX="98.0" layoutY="679.0" onAction="#editp" />
+      <TextField fx:id="deletefield" layoutX="97.0" layoutY="779.0" onAction="#deletep" />
+      <TextField fx:id="id_modif2" layoutX="722.0" layoutY="679.0" onAction="#editc" />
+      <TextField fx:id="deletefield2" layoutX="722.0" layoutY="779.0" onAction="#deletec" />
+      <Button fx:id="deletep" layoutX="120.0" layoutY="718.0" mnemonicParsing="false" onAction="#deletep" text="Supprimer" />
+      <Button fx:id="editp" layoutX="127.0" layoutY="627.0" mnemonicParsing="false" onAction="#editp" text="Edit pub" />
+      <Button fx:id="addp" layoutX="113.0" layoutY="534.0" mnemonicParsing="false" onAction="#addp" text="Ajouter Pub" />
+      <Button fx:id="deletec" layoutX="738.0" layoutY="718.0" mnemonicParsing="false" onAction="#deletec" text="Supprimer" />
+      <Button fx:id="editc" layoutX="751.0" layoutY="627.0" mnemonicParsing="false" onAction="#editc" text="Edit com" />
+      <Button fx:id="addc" layoutX="731.0" layoutY="534.0" mnemonicParsing="false" onAction="#addc" text="Ajouter com" />
+      <TextArea fx:id="conpub" layoutX="83.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="concom" layoutX="691.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="146.0" layoutY="150.0" prefHeight="17.0" prefWidth="72.0" text="Titre">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="259.0" prefHeight="17.0" prefWidth="116.0" text="Contenu">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="769.0" layoutY="150.0" text="Idpub">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="743.0" layoutY="259.0" prefHeight="17.0" prefWidth="116.0" text="Contenu">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

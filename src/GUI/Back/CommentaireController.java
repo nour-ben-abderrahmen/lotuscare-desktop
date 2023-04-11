@@ -57,10 +57,14 @@ public class CommentaireController implements Initializable {
     private TableColumn<Commentaire, String> com;
     @FXML
     private TextField id_modif2;
+    @FXML
+    private TableColumn<Commentaire, Integer> idcom;
 
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+                   idcom.setCellValueFactory(new PropertyValueFactory<Commentaire,Integer>("id"));
+
             pub.setCellValueFactory(new PropertyValueFactory<Commentaire,Publication>("publication_id"));
             com.setCellValueFactory(new PropertyValueFactory<Commentaire,String>("contenu_comm"));
            
@@ -78,24 +82,75 @@ public class CommentaireController implements Initializable {
     @FXML
     
          private void addcom(ActionEvent event) {
-             
-             ServicePublication pub= new ServicePublication();
+              if(contenucom.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir la description!");
+        alert1.showAndWait();}
+  
+           else if(idpub.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir l'id pub !");
+        alert1.showAndWait();}
+          else {
+             ServicePublication pub1= new ServicePublication();
              Publication p1;
-             p1 = pub.getPubParId(Integer.parseInt(idpub.getText()));
-         Commentaire com= new Commentaire(contenucom.getText(),p1);
+             p1 = pub1.getPubParId(Integer.parseInt(idpub.getText()));
+         Commentaire com1= new Commentaire(contenucom.getText(),p1);
      
      ServiceCommentaire sp=new ServiceCommentaire();
+         System.out.println(com1);
+     sp.addcom(com1);
      
-     sp.addcom(com);
-    
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+           alert.setContentText("commentaire ajouté avec succès!");
+            JOptionPane.showMessageDialog(null,"commentaire ajouté avec succès!");     
+            pub.setCellValueFactory(new PropertyValueFactory<Commentaire,Publication>("publication_id"));
+            com.setCellValueFactory(new PropertyValueFactory<Commentaire,String>("contenu_comm"));
+           
+            ObservableList<Commentaire> listU = FXCollections.observableArrayList();
+            ServiceCommentaire ps=new ServiceCommentaire();
+           
+        try {
+            ps.affcom().forEach(r->{listU.add(r);});
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            listcom.setItems(listU);
     }
-
+         
+    
+         }
     @FXML
          private void supcom(ActionEvent event) throws SQLException {
         ServiceCommentaire sc=new ServiceCommentaire();
         int id = Integer.parseInt(deletefield2.getText());
+        System.out.println(id);
         sc.supcom(id);   
-         JOptionPane.showMessageDialog(null,"Commentaire supprimée"); 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+           alert.setContentText("commentaire supprimé avec succès!");
+            JOptionPane.showMessageDialog(null,"commentaire supprimé avec succès!");     
+            pub.setCellValueFactory(new PropertyValueFactory<Commentaire,Publication>("publication_id"));
+            com.setCellValueFactory(new PropertyValueFactory<Commentaire,String>("contenu_comm"));
+           
+            ObservableList<Commentaire> listU = FXCollections.observableArrayList();
+            ServiceCommentaire ps=new ServiceCommentaire();
+           
+        try {
+            ps.affcom().forEach(r->{listU.add(r);});
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            listcom.setItems(listU);
     }
     
          
@@ -104,6 +159,22 @@ public class CommentaireController implements Initializable {
     
     
     private void editcom(ActionEvent event) throws SQLException {
+         if(contenucom.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir la description!");
+        alert1.showAndWait();}
+  
+           else if(idpub.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir l'id pub !");
+        alert1.showAndWait();}
+          else {
         ServicePublication pub1= new ServicePublication();
              Publication p1;
               p1 = pub1.getPubParId(Integer.parseInt(idpub.getText()));
@@ -134,10 +205,19 @@ public class CommentaireController implements Initializable {
         }
             listcom.setItems(listU);
     }
+    }
 
     @FXML
     private void HandleMouseAction(MouseEvent event) {
         
+         
+         Commentaire c = (Commentaire) listcom.getSelectionModel().getSelectedItem();
+         
+        contenucom.setText("" +c.getContenu_comm());
+        idpub.setText("" +c.getPublication_id());
+         deletefield2.setText("" +c.getId());
+         id_modif2.setText("" +c.getId());
     }
+    
     
 }

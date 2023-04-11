@@ -51,6 +51,7 @@ public class ServicePublication implements Iservicepublication <Publication>{
 
         while (rst.next()) {
             Publication re = new Publication( 
+                    rst.getInt("id"),
                     rst.getString("code_pub"),
                     rst.getString("contenu_pub")
           );
@@ -90,6 +91,9 @@ public class ServicePublication implements Iservicepublication <Publication>{
             System.out.println(ex.getMessage());
 }
     }
+    
+    
+    
     
     public Publication getPubParId(int id) {
     String sql = "SELECT * FROM publication WHERE id = ?";

@@ -56,6 +56,9 @@ public class ForumController implements Initializable {
     private TextField deletefield;
     @FXML
     private TextField id_modif;
+    @FXML
+    private TableColumn<Publication, Integer> colid;
+ 
     
     
    
@@ -64,8 +67,10 @@ public class ForumController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) { 
+        colid.setCellValueFactory(new PropertyValueFactory<Publication,Integer>("id"));
             titre.setCellValueFactory(new PropertyValueFactory<Publication,String>("code_pub"));
             description.setCellValueFactory(new PropertyValueFactory<Publication,String>("contenu_pub"));
+            
            
             ObservableList<Publication> listU = FXCollections.observableArrayList();
             ServicePublication ps=new ServicePublication();
@@ -84,29 +89,91 @@ public class ForumController implements Initializable {
    
     @FXML
     private void addpub(ActionEvent event) {
-         
+          if(contenupub.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir la description!");
+        alert1.showAndWait();}
+           else if(codepub.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir le titre !");
+        alert1.showAndWait();}
+          else {
      Publication pub= new Publication(codepub.getText(),contenupub.getText());
      
      ServicePublication sp=new ServicePublication();
-     
+      System.out.println(pub);
      sp.addpub(pub);
+      titre.setCellValueFactory(new PropertyValueFactory<Publication,String>("code_pub"));
+            description.setCellValueFactory(new PropertyValueFactory<Publication,String>("contenu_pub"));
+           
+            ObservableList<Publication> listU = FXCollections.observableArrayList();
+            ServicePublication ps=new ServicePublication();
+           
+        try {
+            ps.affpub().forEach(r->{listU.add(r);});
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            listpub.setItems(listU);
 
         }
 
+    }
+    
     
     
     @FXML
     private void suppub(ActionEvent event) throws SQLException {
+        
            ServicePublication sc=new ServicePublication();
         int id = Integer.parseInt(deletefield.getText());
+        System.out.println(id);
         sc.suppub(id);   
          JOptionPane.showMessageDialog(null,"Publication supprimée");  
-    }
+         
+          titre.setCellValueFactory(new PropertyValueFactory<Publication,String>("code_pub"));
+            description.setCellValueFactory(new PropertyValueFactory<Publication,String>("contenu_pub"));
+           
+            ObservableList<Publication> listU = FXCollections.observableArrayList();
+            ServicePublication ps=new ServicePublication();
+           
+        try {
+            ps.affpub().forEach(r->{listU.add(r);});
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            listpub.setItems(listU);
+
+        }
+         
+    
     
     
    
     @FXML
     private void editpub(ActionEvent event) throws SQLException {
+        if(contenupub.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir la description!");
+        alert1.showAndWait();}
+  
+           else if(codepub.getText().isEmpty())  {
+        // afficher un message d'erreur indiquant qu'un champ est vide
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Erreur");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Veuillez remplir le titre !");
+        alert1.showAndWait();}
+          else {
         
         ServicePublication sr=new ServicePublication();
        
@@ -114,7 +181,7 @@ public class ForumController implements Initializable {
            
       Publication p=new Publication(id_R_modif,codepub.getText(),contenupub.getText());
        
-
+ System.out.println(p);
         sr.editpub(p);
  
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -122,14 +189,23 @@ public class ForumController implements Initializable {
             alert.setHeaderText(null);
            alert.setContentText("publication modifier avec succès!");
             JOptionPane.showMessageDialog(null,"publication modifier avec succès!");
-        
-    }
+        titre.setCellValueFactory(new PropertyValueFactory<Publication,String>("code_pub"));
+            description.setCellValueFactory(new PropertyValueFactory<Publication,String>("contenu_pub"));
+           
+            ObservableList<Publication> listU = FXCollections.observableArrayList();
+            ServicePublication ps=new ServicePublication();
+           
+        try {
+            ps.affpub().forEach(r->{listU.add(r);});
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            listpub.setItems(listU);
 
+        }
     
-    
-    @FXML
-    private void initialize(ActionEvent event) {
     }
+    
 
     @FXML
     private void HandleMouseAction(MouseEvent event) {
@@ -138,6 +214,7 @@ public class ForumController implements Initializable {
           id_modif.setText("" +p.getId());
         codepub.setText("" +p.getCode_pub());
         contenupub.setText("" +p.getContenu_pub());
+         deletefield.setText("" +p.getId());
         
     }
 
