@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lotuscare">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lotuscare-desktop-produits/dist/lotuscare.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
