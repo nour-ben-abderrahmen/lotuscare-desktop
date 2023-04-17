@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="user libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/user libs/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/user libs/json-20210307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/user libs/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/user libs/spring-security-crypto-5.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/user libs/mysql-connector-java-8.0.28.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

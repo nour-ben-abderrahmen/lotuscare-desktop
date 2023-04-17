@@ -13,12 +13,14 @@ public class Statics {
     
     public static String imgPath = "File:/C:/wamp64/www/Digi-Dreamers/public/uploads/users/";
     public static String uploadDirectory = "C:/wamp64/www/Digi-Dreamers/public/uploads/users/";
+    public static String uploadDirectory2 = "C:/wamp64/www/Digi-Dreamers/public/uploads/events/";
+
 
 
  
     
     //Dev database
-    public static String url = "jdbc:mysql://localhost:3306/lotuscare_db";
+    public static String url = "jdbc:mysql://localhost:3306/LotusCare?serverTimezone=UTC";
     public static String user = "root";
     public static String pwd = "";
     

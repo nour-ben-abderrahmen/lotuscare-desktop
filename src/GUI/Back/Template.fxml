@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="786.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TemplateController">
+<AnchorPane id="AnchorPane" prefHeight="786.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TemplateController">
    <children>
       <ImageView fitHeight="786.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -31,17 +31,17 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="forumBtn" mnemonicParsing="false" onAction="#redirectToForum" prefHeight="47.0" prefWidth="231.0" style="-fx-background-color: white;" text="Gestion Forum" textFill="#a19595">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="eventBtn" mnemonicParsing="false" onAction="#redirectToEvents" prefHeight="47.0" prefWidth="231.0" style="-fx-background-color: white;" text="Gestion Evenement" textFill="#a19595">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="produitBtn" mnemonicParsing="false" onAction="#redirectToProduit" prefHeight="47.0" prefWidth="231.0" style="-fx-background-color: white;" text="Gestion Produit" textFill="#a19595">
+                  <Button fx:id="donBtn" mnemonicParsing="false" onAction="#redirectToDons" prefHeight="47.0" prefWidth="231.0" style="-fx-background-color: white;" text="Gestion Don" textFill="#a19595">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="associationBtn" mnemonicParsing="false" onAction="#redirectToAssociation" prefHeight="47.0" prefWidth="231.0" style="-fx-background-color: white;" text="Gestion Association" textFill="#a19595">
                      <font>
                         <Font size="16.0" />
                      </font>

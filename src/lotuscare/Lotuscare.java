@@ -34,7 +34,7 @@ public class Lotuscare extends Application {
             LocalStorage localStorage = new LocalStorage();
             User storedUser = localStorage.getStoredUser();
 
-            if (storedUser.getId() != 0) { //stored user exists
+            if (storedUser.getId() == 0) { //stored user exists
                 SU = new ServiceUser();
                 SU.updateCurrentUser(storedUser);
                 try {

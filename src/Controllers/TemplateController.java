@@ -42,11 +42,11 @@ public class TemplateController implements Initializable {
     @FXML
     private Button usersBtn;
     @FXML
-    private Button forumBtn;
+    private Button donBtn;
     @FXML
     private Button eventBtn;
     @FXML
-    private Button produitBtn;
+    private Button associationBtn;
     @FXML
     private Pane navbar;
     @FXML
@@ -78,7 +78,7 @@ public class TemplateController implements Initializable {
         addNavbarBorder();
 
         userPopup_fullname.setText(SU.currentUser.getPrenom() + " " + SU.currentUser.getNom());
-        String prettierRole = SU.currentUser.getRoles();
+        String prettierRole = "admin";
         prettierRole = prettierRole.replace("[", "");
         prettierRole = prettierRole.replace("]", "");
         prettierRole = prettierRole.replace("ROLE_", "");
@@ -111,14 +111,14 @@ public class TemplateController implements Initializable {
         usersBtn.setTextFill(Color.web("#a19595"));
         usersBtn.setStyle("-fx-background-color :#ffffff");
 
-        forumBtn.setTextFill(Color.web("#a19595"));
-        forumBtn.setStyle("-fx-background-color :#ffffff");
+        donBtn.setTextFill(Color.web("#a19595"));
+        donBtn.setStyle("-fx-background-color :#ffffff");
 
         eventBtn.setTextFill(Color.web("#a19595"));
         eventBtn.setStyle("-fx-background-color :#ffffff");
 
-        produitBtn.setTextFill(Color.web("#a19595"));
-        produitBtn.setStyle("-fx-background-color :#ffffff");
+        associationBtn.setTextFill(Color.web("#a19595"));
+        associationBtn.setStyle("-fx-background-color :#ffffff");
 
     }
 
@@ -180,15 +180,15 @@ public class TemplateController implements Initializable {
     }
 
     @FXML
-    private void redirectToForum(ActionEvent event) {
+    private void redirectToDons(ActionEvent event) {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Forum.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/don.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
-            forumBtn.setTextFill(Color.web("#696cff"));
-            forumBtn.setStyle("-fx-background-color :#696cff29");
+            donBtn.setTextFill(Color.web("#696cff"));
+            donBtn.setStyle("-fx-background-color :#696cff29");
         } catch (IOException ex) {
             Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -199,7 +199,7 @@ public class TemplateController implements Initializable {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Event.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/evenement.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
             eventBtn.setTextFill(Color.web("#696cff"));
@@ -209,16 +209,17 @@ public class TemplateController implements Initializable {
         }
     }
 
+
     @FXML
-    private void redirectToProduit(ActionEvent event) {
+    private void redirectToAssociation(ActionEvent event) {
 
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/Produit.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/GUI/Back/association.fxml"));
             anchor.getChildren().setAll(pane);
             defaultStateButtons();
-            produitBtn.setTextFill(Color.web("#696cff"));
-            produitBtn.setStyle("-fx-background-color :#696cff29");
+            associationBtn.setTextFill(Color.web("#696cff"));
+            associationBtn.setStyle("-fx-background-color :#696cff29");
         } catch (IOException ex) {
             Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
