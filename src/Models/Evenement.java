@@ -24,6 +24,7 @@ public class Evenement {
     private String url_image;
 
     private List<Don> DonEvent;
+    //private List<User> users;
 
     private String lat;
     private String lon;

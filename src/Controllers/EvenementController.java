@@ -1,5 +1,6 @@
 package Controllers;
 
+import Interfaces.Mylistener;
 import Models.Evenement;
 import Services.EvenementServiceImp;
 import Tools.Statics;
@@ -7,8 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,8 +19,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import netscape.javascript.JSObject;
 
 
 import java.io.File;
@@ -30,9 +39,45 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 
-public class EvenementController {
+public class EvenementController  {
+    @FXML
+    private VBox chosenEventCard;
+
+    @FXML
+    private Label eventTitreLabel;
+
+    @FXML
+    private ImageView eventImg;
+
+    @FXML
+    private Label eventLieuLabel;
+
+    @FXML
+    private Label eventPrixLabel;
+
+    @FXML
+    private Label eventDescriptionLabel;
+    @FXML
+    private ScrollPane scroll;
+
+    @FXML
+    private GridPane grid;
+
+    private Mylistener mylistener;
+
+
+
+
+
+
+    @FXML
+    private AnchorPane mapPane;
+
+    @FXML
+    private WebView webView;
     @FXML
     private TableColumn<Evenement,String> col_event_titre;
     @FXML
@@ -93,7 +138,10 @@ private Image image = null;
     private AnchorPane root1;
     @FXML
     private AnchorPane root2;
+
     private String url_image=null;
+
+    Evenement event1 = null;
 
     EvenementServiceImp evenementServiceImp = new EvenementServiceImp();
     public void showListEvent() throws SQLException {
@@ -163,7 +211,7 @@ private Image image = null;
                 Path destPath = Paths.get(Statics.uploadDirectory2 + url_image);
                 Files.copy(file.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
 
-                event.setUrl_image(url_image);
+                event.setUrl_image(Statics.uploadDirectory2 + url_image);
                 event.setLon("222");
                 event.setLat("55");
                 event.setGouv("Medenine");
@@ -221,6 +269,7 @@ private Image image = null;
         Evenement event=eventTableView.getSelectionModel().getSelectedItem();
         int num = eventTableView.getSelectionModel().getSelectedIndex();
         if((num - 1)<-1){return;}
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Back/updateEvent.fxml"));
         Parent root = loader.load();
 
@@ -246,9 +295,8 @@ private Image image = null;
         event_prix.setText(String.valueOf(event.getPrix()));
         event_date.setValue(Instant.ofEpochMilli(event.getDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 
-        String url= "file://"+Statics.uploadDirectory2 +event.getUrl_image();
-        System.out.println(event.getUrl_image());
-        System.out.println(url);
+        String url= "file:"+event.getUrl_image();
+
 
         try{
             Image image = new Image(url, 200, 66, false, true);
@@ -272,8 +320,56 @@ private Image image = null;
         event_image.setImage(null);
     }
 
-    public void eventUpdate2(){
+    public void participer(){
+        try {
+            Alert alert;
 
+            if (event1.getNbr_participant()==0
+            ) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("L'évènement "+event1.getTitre()+" n a plus des places disponibles");
+                alert.showAndWait();
+            } else {
+
+
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Cofirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Êtes-vous sûr de vouloir participer à l'événement : " + event1.getTitre() + "?");
+                Optional<ButtonType> option = alert.showAndWait();
+                if (option.get().equals(ButtonType.OK)) {
+
+                    event1.setNbr_participant(event1.getNbr_participant()-1);
+                    event1.setTotal(event1.getTotal()+event1.getPrix());
+                   // event1.setUsers(event1.getUsers().add());
+                    evenementServiceImp.participerEvent(event1.getId(),event1.getNbr_participant(),event1.getTotal());
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Participer avec Succes!");
+                    alert.showAndWait();
+
+
+
+
+
+                }
+
+
+
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void eventUpdate2(){
 
         try {
             Alert alert;
@@ -298,8 +394,10 @@ private Image image = null;
                 if (option.get().equals(ButtonType.OK)) {
 
                     Path destPath = Paths.get(Statics.uploadDirectory2 + url_image);
+                    url_image = Statics.uploadDirectory2 + url_image;
                     Files.copy(file.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
                     evenementServiceImp.updateEvent(Integer.parseInt(event_id.getText()),event_titre.getText(),event_lieu.getText(),Integer.parseInt(event_nbrParticipant.getText()),Date.valueOf(event_date.getValue()),event_description.getText(),Float.valueOf(event_prix.getText()),url_image);
+                    // TWILIOO !!!!!!!!!!!!!!!
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -344,10 +442,101 @@ private Image image = null;
             event_image.setImage(image);
         }
     }
+    public void setChosenEvent(Evenement event){
+        eventTitreLabel.setText(event.getTitre());
+        eventLieuLabel.setText(event.getLieu());
+        eventPrixLabel.setText(String.valueOf(event.getPrix())+" DT");
+        eventDescriptionLabel.setText(event.getDescription());
+        image = new Image("file:"+event.getUrl_image());
+        eventImg.setImage(image);
+        chosenEventCard.setStyle("-fx-background-color : #9ACD32");
+        event1=event;
+
+    }
+    public void eventMap(){
+        WebEngine webEngine =webView.getEngine();
+        webEngine.load("https://maps.google.com/maps?t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed");
+        webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == Worker.State.SUCCEEDED) {
+                JSObject window = (JSObject) webEngine.executeScript("window");
+
+                window.setMember("app", this);
+
+                String script = "var map = new google.maps.Map(document.getElementById('map'), {\n" +
+                        "    center: {lat: 33.886917, lng: 9.537499},\n" +
+                        "    zoom: 30\n" +
+                        "});\n" +
+                        "var marker = new google.maps.Marker({\n" +
+                        "    position: {lat: 33.886917, lng: 9.537499},\n" +
+                        "    map: map,\n" +
+                        "google.maps.event.addListener(marker, 'click', function() {\n" +
+                        "   var position = marker.getPosition();\n" +
+                            "          var latitude = position.lat();\n" +
+                            "          var longitude = position.lng();\n" +
+                            "          java.getLatLng(latitude, longitude);\n" +
+                            "        });\n"+
+                        "});";
+                window.setMember("java", new Object() {
+                    public void getLatLng(double latitude, double longitude) {
+                        System.out.println("Latitude : " + latitude + ", Longitude : " + longitude);
+                    }
+                });
+                webEngine.executeScript(script);
+
+            }
+
+        });
+
+    }
     @FXML
     void initialize() throws SQLException {
         if (eventTableView != null) {
             showListEvent();
+        }
+
+        if (scroll != null){
+            List<Evenement> events = evenementServiceImp.getAllEvents();
+            if (events.size()>0){
+                setChosenEvent(events.get(0));
+                mylistener = new Mylistener() {
+                    @Override
+                    public void onClickListener(Evenement event) {
+                        setChosenEvent(event);
+                    }
+                };
+            }
+            int column = 0;
+            int row = 1;
+            try{
+                for(int  i=0;i < events.size();i++){
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/GUI/Front/item.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    ItemController itemController = fxmlLoader.getController();
+                    itemController.setData(events.get(i),mylistener);
+                    if (column==3){
+                        column=0;
+                        row++;
+                    }
+
+                    grid.add(anchorPane,column++,row);
+
+                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxHeight(Region.USE_PREF_SIZE);
+                    GridPane.setMargin(anchorPane,new Insets(10));
+                }}catch (IOException e){
+                e.printStackTrace();
+            }
+
+
+        }
+        if (webView!=null){
+            eventMap();
         }
 
     }

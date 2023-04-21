@@ -65,6 +65,22 @@ public class EvenementServiceImp implements EvenementService {
 
     }
 
+
+
+    @Override
+    public void participerEvent(int id,int nbr_participant,float total) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(
+                "UPDATE evenement SET nbr_participant=?,total=? where id = ?");
+        ps.setInt(1,nbr_participant);
+        ps.setFloat(2,total);
+
+        ps.setInt(3,id);
+        ps.executeUpdate();
+        ps.close();
+
+
+    }
+
     @Override
     public void updateEventTotal(int id) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(

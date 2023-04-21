@@ -10,44 +10,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="543.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssociationController">
+<AnchorPane prefHeight="695.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssociationController">
    <children>
-      <AnchorPane layoutX="37.0" layoutY="14.0" prefHeight="509.0" prefWidth="256.0" stylesheets="@dashboardDesign.css">
+      <AnchorPane layoutX="37.0" layoutY="14.0" prefHeight="640.0" prefWidth="406.0" stylesheets="@dashboardDesign.css">
          <styleClass>
             <String fx:value="white-bg" />
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <Label layoutX="75.0" layoutY="36.0" prefHeight="46.0" prefWidth="107.0" text="Association">
+            <Label layoutX="75.0" layoutY="36.0" prefHeight="53.0" prefWidth="236.0" text="Association" textAlignment="RIGHT">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Arial Bold" size="40.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="110.0" text="Nom " />
-            <Label layoutX="14.0" layoutY="197.0" text="Description " />
-            <TextField fx:id="association_nom" layoutX="14.0" layoutY="144.0" promptText="Nom" styleClass="label-info" stylesheets="@dashboardDesign.css" />
-            <TextField fx:id="association_description" layoutX="14.0" layoutY="224.0" prefHeight="139.0" prefWidth="187.0" promptText="Description" styleClass="label-info" stylesheets="@dashboardDesign.css" />
-            <Button layoutX="108.0" layoutY="405.0" mnemonicParsing="false" onMouseClicked="#associationUpdate" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Update" />
-            <Button layoutX="45.0" layoutY="405.0" mnemonicParsing="false" onMouseClicked="#associationReset" styleClass="clear-btn" stylesheets="@dashboardDesign.css" text="Clear" />
-            <Button layoutX="117.0" layoutY="449.0" mnemonicParsing="false" onMouseClicked="#associationAdd" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Add" />
-            <Button layoutX="41.0" layoutY="449.0" mnemonicParsing="false" onMouseClicked="#associationDelete" styleClass="delete-btn" stylesheets="@dashboardDesign.css" text="Delete" />
-            <Button layoutX="150.0" layoutY="182.0" mnemonicParsing="false" onMouseClicked="#generatePdfAssociation" text="Pdf" />
+            <Label layoutX="14.0" layoutY="113.0" prefHeight="31.0" prefWidth="66.0" text="Nom " />
+            <Label layoutX="14.0" layoutY="245.0" prefHeight="38.0" prefWidth="110.0" text="Description " />
+            <TextField fx:id="association_nom" layoutX="14.0" layoutY="144.0" prefHeight="59.0" prefWidth="250.0" promptText="Nom" styleClass="label-info" stylesheets="@dashboardDesign.css" />
+            <TextField fx:id="association_description" layoutX="14.0" layoutY="283.0" prefHeight="195.0" prefWidth="250.0" promptText="Description" styleClass="label-info" stylesheets="@dashboardDesign.css" />
+            <Button layoutX="235.0" layoutY="499.0" mnemonicParsing="false" onMouseClicked="#associationUpdate" prefHeight="38.0" prefWidth="80.0" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Update" />
+            <Button layoutX="84.0" layoutY="499.0" mnemonicParsing="false" onMouseClicked="#associationReset" prefHeight="38.0" prefWidth="66.0" styleClass="clear-btn" stylesheets="@dashboardDesign.css" text="Clear" />
+            <Button layoutX="242.0" layoutY="577.0" mnemonicParsing="false" onMouseClicked="#associationAdd" prefHeight="38.0" prefWidth="66.0" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Add" />
+            <Button layoutX="84.0" layoutY="577.0" mnemonicParsing="false" onMouseClicked="#associationDelete" prefHeight="38.0" prefWidth="66.0" styleClass="delete-btn" stylesheets="@dashboardDesign.css" text="Delete" />
+            <Button layoutX="294.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#generatePdfAssociation" text="Pdf" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="322.0" layoutY="14.0" prefHeight="509.0" prefWidth="517.0" stylesheets="@dashboardDesign.css">
+      <AnchorPane layoutX="459.0" layoutY="12.0" prefHeight="640.0" prefWidth="586.0" stylesheets="@dashboardDesign.css">
          <styleClass>
             <String fx:value="white-bg" />
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <TableView fx:id="associationTableView" layoutX="32.0" layoutY="124.0" onMouseClicked="#associationSelect" prefHeight="340.0" prefWidth="453.0" stylesheets="@dashboardDesign.css">
+            <TableView fx:id="associationTableView" layoutX="39.0" layoutY="148.0" onMouseClicked="#associationSelect" prefHeight="377.0" prefWidth="508.0" stylesheets="@dashboardDesign.css">
               <columns>
-                <TableColumn fx:id="col_association_nom" prefWidth="170.0" text="Nom" />
-                <TableColumn fx:id="col_association_description" prefWidth="282.0" text="Description" />
+                <TableColumn fx:id="col_association_nom" prefWidth="196.0" text="Nom" />
+                <TableColumn fx:id="col_association_description" prefWidth="311.0" text="Description" />
               </columns>
             </TableView>
-            <TextField fx:id="association_search" alignment="TOP_LEFT" layoutX="173.0" layoutY="51.0" onKeyTyped="#associationSearch" prefHeight="26.0" prefWidth="172.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" />
-            <FontAwesomeIconView glyphName="SEARCH" layoutX="179.0" layoutY="70.0" size="19.0" />
+            <TextField fx:id="association_search" alignment="TOP_LEFT" layoutX="207.0" layoutY="73.0" onKeyTyped="#associationSearch" prefHeight="26.0" prefWidth="172.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" />
+            <FontAwesomeIconView glyphName="SEARCH" layoutX="214.0" layoutY="92.0" size="19.0" />
          </children>
       </AnchorPane>
    </children>

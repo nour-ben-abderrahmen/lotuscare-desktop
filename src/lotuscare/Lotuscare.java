@@ -38,7 +38,7 @@ public class Lotuscare extends Application {
                 SU = new ServiceUser();
                 SU.updateCurrentUser(storedUser);
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Template.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/eventsFront.fxml"));
                     Scene scene = new Scene(root, 1366, 768);
                     primaryStage.setTitle("Lotuscare");
                     primaryStage.setScene(scene);
@@ -56,7 +56,6 @@ public class Lotuscare extends Application {
 
         } catch (IOException ex) {
             try {
-
                 System.out.println("error get storedUser");
                 Parent root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
                 Scene scene = new Scene(root, 1366, 768);
@@ -67,7 +66,6 @@ public class Lotuscare extends Application {
                 Logger.getLogger(Lotuscare.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
-
     }
 
     /**
