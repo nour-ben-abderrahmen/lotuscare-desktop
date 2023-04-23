@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
 /**
  *
@@ -28,12 +31,13 @@ public class ServicePublication implements Iservicepublication <Publication>{
    
     @Override
     public void addpub(Publication p) {
-        String sql="insert into publication (Code_pub,Contenu_pub) values (?,?)";
+        String sql="insert into publication (Code_pub,Contenu_pub,Url_image_pub) values (?,?,?)";
         PreparedStatement ste;
         try {
             ste = cnx.prepareStatement(sql);
             ste.setString(1, p.getCode_pub());
             ste.setString(2, p.getContenu_pub());
+            ste.setString(3, p.getUrl_image_pub());
             ste.executeUpdate();
             System.out.println("Publication Ajoutée");
         } catch (SQLException ex) {
@@ -59,7 +63,35 @@ public class ServicePublication implements Iservicepublication <Publication>{
         }
         return Publications;
     }
+     
+     
+        public ObservableList<Publication> afficher2() {
+      ObservableList<Publication> Publications = FXCollections.observableArrayList();
+            String qry = "SELECT * FROM `publication`";
+        
+    try {
+        Statement stm = cnx.createStatement();
+        ResultSet rs = stm.executeQuery(qry);
+         
+        while (rs.next()){
+            
+                Publication h = new Publication();
+                h.setId(rs.getInt("id"));
+                h.setCode_pub(rs.getString("code_pub"));
+                h.setContenu_pub(rs.getString("contenu_pub"));
+                h.setUrl_image_pub(rs.getString("Url_image_pub"));                
+                Publications.add(h);
+        }
+                 
+        return Publications;
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
     
+    return Publications;
+    
+}
+
     /**
      *
      * @param id
@@ -80,10 +112,13 @@ public class ServicePublication implements Iservicepublication <Publication>{
       System.out.println("Nombre de lignes supprimées : " + nbLignesSupprimees);
     }
 
+    
+    
+    
     @Override
     public void editpub(Publication p) throws SQLException {
     try {
-            String req = "UPDATE publication SET code_pub = '"+ p.getCode_pub()+ "',`contenu_pub` = '" +p.getContenu_pub()+ "' WHERE publication.`id` = " +p.getId();
+            String req = "UPDATE publication SET code_pub = '"+ p.getCode_pub()+ "',`contenu_pub` = '" +p.getContenu_pub()+ "',`url_image_pub` = '" +p.getUrl_image_pub()+ "' WHERE publication.`id` = " +p.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("publication updated !");
@@ -106,7 +141,8 @@ public class ServicePublication implements Iservicepublication <Publication>{
             Publication c = new Publication(
                     rs.getInt("id"),
                     rs.getString("code_pub"),
-                    rs.getString("contenu_pub")
+                    rs.getString("contenu_pub"),
+                    rs.getString("url_image_pub")
             );
             return c;
         }
@@ -115,6 +151,28 @@ public class ServicePublication implements Iservicepublication <Publication>{
     }
     return null;
 }
+    
+    public List<Publication> rechercherpub(String critere) throws SQLException {
+   
+    String req = "SELECT * FROM publication WHERE code_pub LIKE ? OR contenu_pub LIKE ? ";
+    Statement ps = cnx.createStatement();
+       
+    PreparedStatement ste = cnx.prepareStatement(req);
+    ste.setString(1, "%" + critere + "%");
+    ste.setString(2, "%" + critere + "%");
+    ResultSet rs = ste.executeQuery();
+    List<Publication> Publications = new ArrayList<>();
+   
+    while (rs.next()) {
+        Publication r = new Publication(rs.getString("code_pub"),
+                    rs.getString("contenu_pub")
+                    );
+        Publications.add(r);
+    }
+    return Publications;
+}
+   
+
 }
 
     

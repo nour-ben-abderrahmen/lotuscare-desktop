@@ -17,6 +17,7 @@ import Services.ServiceCommentaire;
 import Services.ServicePublication;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,6 +87,9 @@ public class ForumBackController implements Initializable {
     private TextField deletefield2;
     @FXML
     private TextField id_modif2;
+    @FXML
+    private TextField filtrefield;
+    final ObservableList options = FXCollections.observableArrayList();
 
     
     @Override
@@ -228,7 +232,7 @@ public class ForumBackController implements Initializable {
         
         
     }
-@FXML
+    @FXML
     private void HandleMouseAction(MouseEvent event) {
         
          Publication p = (Publication) tabp.getSelectionModel().getSelectedItem();
@@ -322,11 +326,6 @@ public class ForumBackController implements Initializable {
         
     }
 
-    
-    
-    
-    
-    
     @FXML
     private void addc(ActionEvent event) {
               if(concom.getText().isEmpty())  {
@@ -385,6 +384,22 @@ public class ForumBackController implements Initializable {
          deletefield2.setText("" +c.getId());
          id_modif2.setText("" +c.getId());
     }
+
+        @FXML
+        private void search(ActionEvent event) throws SQLException {
+
+
+              String critere = filtrefield.getText();
+            //  int critere1 = Integer.parseInt(filterField.getText());
+
+        ServicePublication so = new ServicePublication();
+        List<Publication> Publications = so.rechercherpub(critere);
+        options.clear();
+        options.addAll(Publications);
+        tabp.setItems(options);
+        }
+        
+    
             
            
        

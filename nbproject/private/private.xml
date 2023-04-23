@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/lotuscare/test.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/lotuscare/Lotuscare.java</file>
+            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/Models/Commentaire.java</file>
             <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/Controllers/ForumController.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/lotuscare/Publication.java</file>
+            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/Services/ServicePublication.java</file>
+            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/GUI/Back/ForumBackController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -8,6 +8,7 @@ package Services;
 import Models.Publication;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.scene.control.ListView;
 
 
 
@@ -23,4 +24,6 @@ public interface Iservicepublication<P> {
   //  public void suppub(P p);
     public void suppub(int id)throws SQLException;
     public void editpub(P p) throws SQLException;
+    public List<Publication> rechercherpub(String critere) throws SQLException;
+  
 }

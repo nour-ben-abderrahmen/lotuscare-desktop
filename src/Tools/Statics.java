@@ -11,11 +11,8 @@ package Tools;
  */
 public class Statics {
     
-    public static String imgPath = "pathsymfony";
-    public static String uploadDirectory = "C:/xampp/htdocs/Digi-Dreamers/public/uploads/users/";
-
-
- 
+    public static String imgPath = "File:/C:/xampp/htdocs/New folder/pidev/pidev/Digi-Dreamers/public/uploadsforum/imagespublication/";
+    public static String uploadDirectory = "C:/xampp/htdocs/New folder/pidev/pidev/Digi-Dreamers/public/uploadsforum/imagespublication/";
     
     //Dev database
     public static String url = "jdbc:mysql://localhost:3306/lotuscare_db";
