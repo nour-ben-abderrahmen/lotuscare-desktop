@@ -26,7 +26,7 @@ public class Commentaire extends Application {
     @Override
     public void start(Stage primaryStage) {
        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Forum.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Stats.fxml"));
             Scene scene = new Scene(root, 1366, 900);
             primaryStage.setTitle("Commentaire");
             primaryStage.setScene(scene);

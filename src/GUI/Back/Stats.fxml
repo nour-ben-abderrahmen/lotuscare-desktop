@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1366.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.StatsController">
+   <children>
+      <BarChart fx:id="barChart" layoutX="58.0" layoutY="93.0" prefHeight="750.0" prefWidth="1250.0" stylesheets="@stylesheet.css">
+         <xAxis>
+            <CategoryAxis label="les publications" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="nbr de commentaires" side="LEFT" />
+         </yAxis>
+      </BarChart>
+      <PieChart fx:id="pieChart" layoutX="128.0" layoutY="241.0" prefHeight="202.0" prefWidth="335.0" />
+   </children>
+</AnchorPane>

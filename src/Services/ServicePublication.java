@@ -7,6 +7,7 @@ package Services;
 import Models.Publication;
 import Tools.LotuscareConnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -172,6 +173,52 @@ public class ServicePublication implements Iservicepublication <Publication>{
     return Publications;
 }
    
+    
+    
+    public ObservableList<Publication> Stat() {
+    ObservableList<Publication> list = FXCollections.observableArrayList();
+    try {
+        String sql = "SELECT p.id,p.code_pub, p.contenu_pub " +
+                     "FROM publication p " +
+                     "JOIN commentaire c ON p.id = c.publication_id " +
+                     "GROUP BY p.id " +
+                     "ORDER BY COUNT(p.id) DESC " +
+                     "LIMIT 3";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        ResultSet s = statement.executeQuery();
+
+        // Récupération des valeurs de chaque ligne de résultat
+        while (s.next()) {
+            int pubId = s.getInt("id");
+            String titre = s.getString("code_pub");
+            String description = s.getString("contenu_pub");
+            Publication e = new Publication(pubId , titre, description);
+            list.add(e);
+        }
+
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return list;
+}
+  
+  public int countParticipations(int id) {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM commentaire WHERE publication_id  = ?";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        statement.setInt(1, id);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+  
+  
 
 }
 

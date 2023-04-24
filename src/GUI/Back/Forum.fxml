@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="listviewlabel" prefHeight="989.0" prefWidth="1429.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ForumController">
+<AnchorPane id="AnchorPane" fx:id="listviewlabel" prefHeight="900.0" prefWidth="1366.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ForumController">
        <children>
       <TextArea fx:id="contenupub" layoutX="78.0" layoutY="352.0" prefHeight="200.0" prefWidth="200.0" />
       <TextField fx:id="codepub" layoutX="104.0" layoutY="273.0" />
       <Button fx:id="btadd" layoutX="125.0" layoutY="681.0" mnemonicParsing="false" onAction="#addpub" text="Ajouter" />
-      <Button fx:id="btdelete" layoutX="1028.0" layoutY="670.0" mnemonicParsing="false" onAction="#suppub" text="Supprimer" />
-      <Button fx:id="editpub" layoutX="364.0" layoutY="670.0" mnemonicParsing="false" onAction="#editpub" text="Modifier" />
-      <TextField fx:id="deletefield" layoutX="1007.0" layoutY="720.0" opacity="0.0" />
-      <TextField fx:id="id_modif" layoutX="336.0" layoutY="720.0" opacity="0.0" />
+      <Button fx:id="btdelete" layoutX="1229.0" layoutY="836.0" mnemonicParsing="false" onAction="#suppub" text="Supprimer" />
+      <Button fx:id="editpub" layoutX="389.0" layoutY="836.0" mnemonicParsing="false" onAction="#editpub" text="Modifier" />
+      <TextField fx:id="deletefield" layoutX="14.0" layoutY="824.0" />
+      <TextField fx:id="id_modif" layoutX="14.0" layoutY="863.0" />
       <Label layoutX="166.0" layoutY="233.0" text="Titre">
          <font>
             <Font size="16.0" />
@@ -32,7 +32,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <ListView fx:id="liste" layoutX="389.0" layoutY="53.0" onMouseClicked="#HandleMouseAction" prefHeight="599.0" prefWidth="767.0" />
+      <ListView fx:id="liste" layoutX="389.0" layoutY="52.0" onMouseClicked="#HandleMouseAction" prefHeight="772.0" prefWidth="946.0" />
       <TextField fx:id="imageInput" editable="false" layoutX="43.0" layoutY="612.0" prefHeight="28.0" prefWidth="164.0" promptText="Aucun fichier choisi" />
       <Label layoutX="157.0" layoutY="571.0" prefHeight="25.0" prefWidth="116.0" text="Image" textFill="#566a7f">
          <font>
@@ -40,6 +40,6 @@
          </font>
       </Label>
       <Button layoutX="215.0" layoutY="606.0" mnemonicParsing="false" onAction="#browseAction" prefHeight="28.0" prefWidth="134.0" text="Choisir un fichier" />
-      <Button fx:id="Refresh" layoutX="1082.0" layoutY="7.0" mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
+      <Button fx:id="Refresh" layoutX="1252.0" mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
    </children>
 </AnchorPane>
