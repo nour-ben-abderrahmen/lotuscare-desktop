@@ -83,5 +83,6 @@
       </Label>
       <TextField fx:id="filtrefield" layoutX="717.0" layoutY="62.0" />
       <Button layoutX="739.0" layoutY="94.0" mnemonicParsing="false" onAction="#search" text="Recherche" />
+      <Button fx:id="statsbtn" layoutX="759.0" layoutY="14.0" mnemonicParsing="false" onAction="#statsonclick" text="Stats" />
    </children>
 </AnchorPane>

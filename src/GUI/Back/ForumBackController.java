@@ -6,15 +6,11 @@
 package GUI.Back;
 
 import Controllers.ForumController;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
 import Models.Commentaire;
 import Models.Publication;
 import Services.ServiceCommentaire;
 import Services.ServicePublication;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,7 +21,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -90,6 +88,8 @@ public class ForumBackController implements Initializable {
     @FXML
     private TextField filtrefield;
     final ObservableList options = FXCollections.observableArrayList();
+    @FXML
+    private Button statsbtn;
 
     
     @Override
@@ -398,6 +398,15 @@ public class ForumBackController implements Initializable {
         options.addAll(Publications);
         tabp.setItems(options);
         }
+
+    @FXML
+    private void statsonclick(ActionEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Back/Stats.fxml"));
+                    Parent root = loader.load();
+                    tabp.getScene().setRoot(root);
+        
+    }
         
     
             

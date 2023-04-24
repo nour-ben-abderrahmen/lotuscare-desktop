@@ -17,8 +17,8 @@
       <Button fx:id="btadd" layoutX="125.0" layoutY="681.0" mnemonicParsing="false" onAction="#addpub" text="Ajouter" />
       <Button fx:id="btdelete" layoutX="1229.0" layoutY="836.0" mnemonicParsing="false" onAction="#suppub" text="Supprimer" />
       <Button fx:id="editpub" layoutX="389.0" layoutY="836.0" mnemonicParsing="false" onAction="#editpub" text="Modifier" />
-      <TextField fx:id="deletefield" layoutX="14.0" layoutY="824.0" />
-      <TextField fx:id="id_modif" layoutX="14.0" layoutY="863.0" />
+      <TextField fx:id="deletefield" layoutX="14.0" layoutY="824.0" opacity="0.0" />
+      <TextField fx:id="id_modif" layoutX="14.0" layoutY="863.0" opacity="0.0" />
       <Label layoutX="166.0" layoutY="233.0" text="Titre">
          <font>
             <Font size="16.0" />
@@ -41,5 +41,6 @@
       </Label>
       <Button layoutX="215.0" layoutY="606.0" mnemonicParsing="false" onAction="#browseAction" prefHeight="28.0" prefWidth="134.0" text="Choisir un fichier" />
       <Button fx:id="Refresh" layoutX="1252.0" mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
+      <Button fx:id="com" layoutX="795.0" layoutY="836.0" mnemonicParsing="false" onAction="#oncomclick" text="Commentaires" />
    </children>
 </AnchorPane>

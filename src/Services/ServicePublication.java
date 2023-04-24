@@ -219,7 +219,6 @@ public class ServicePublication implements Iservicepublication <Publication>{
 }
   
   
-
 }
 
     

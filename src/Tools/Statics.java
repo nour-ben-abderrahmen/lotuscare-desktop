@@ -14,6 +14,8 @@ public class Statics {
     public static String imgPath = "File:/C:/xampp/htdocs/New folder/pidev/pidev/Digi-Dreamers/public/uploadsforum/imagespublication/";
     public static String uploadDirectory = "C:/xampp/htdocs/New folder/pidev/pidev/Digi-Dreamers/public/uploadsforum/imagespublication/";
     
+    public static String uploadDirectory1 = "C:/Users/Omar/Desktop/qrcode//";
+    public static String URL= "https://www.google.com/search?q=";
     //Dev database
     public static String url = "jdbc:mysql://localhost:3306/lotuscare_db";
     public static String user = "root";
