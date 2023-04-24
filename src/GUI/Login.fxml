@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -12,16 +13,17 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordInput" layoutX="504.0" layoutY="332.0" prefHeight="43.0" prefWidth="265.0" promptText="Password">
+      <PasswordField fx:id="passwordInput" layoutX="504.0" layoutY="332.0" prefHeight="43.0" prefWidth="265.0" promptText="Password">
          <font>
             <Font size="18.0" />
          </font>
-      </TextField>
+      </PasswordField>
       <Button layoutX="584.0" layoutY="430.0" mnemonicParsing="false" onAction="#loginAction" text="login">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Button layoutX="683.0" layoutY="437.0" mnemonicParsing="false" onAction="#redirectToSignup" text="singup" />
+      <Button layoutX="455.0" layoutY="438.0" mnemonicParsing="false" onAction="#redirectToForgetPassword" text="forgetPassword" />
    </children>
 </AnchorPane>

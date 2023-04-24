@@ -7,6 +7,7 @@ package Interfaces;
 
 import Models.User;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -17,4 +18,10 @@ public interface IServiceUser {
 
     public String login(String email, String password);
     public void addUser(User user);
+    
+    public List<User> getUsers() throws SQLException;
+    public void modifierUtilisateur(User U);
+    public void ModifierRoleById(String role, int id);
+    public void supprimerUtilisateur(int id);
+    public void changePassword(String email,String password);
 }

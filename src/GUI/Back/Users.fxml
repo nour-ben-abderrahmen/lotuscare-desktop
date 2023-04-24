@@ -1,16 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="1060.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.UsersController">
+<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UsersController">
    <children>
-      <Label layoutX="56.0" layoutY="31.0" text="Users">
+      <Label fx:id="BonjourPrenom" layoutX="11.0" layoutY="11.0" prefHeight="69.0" prefWidth="769.0" text="Bonjour Hassen">
          <font>
-            <Font size="15.0" />
+            <Font size="47.0" />
          </font>
       </Label>
+      <Label layoutX="17.0" layoutY="72.0" text="Bienvenue !">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="119.0" prefHeight="30.0" prefWidth="314.0" text="Gestion des Utilisateurs">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <HBox layoutX="10.0" layoutY="165.0" spacing="10.0">
+         <children>
+            <Button fx:id="TousFilterBtn" mnemonicParsing="false" onAction="#FilterTous" prefHeight="44.0" prefWidth="72.0" style="-fx-background-color: white;" text="Tous" textFill="#5b4ebd">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="ClientsFilterBtn" mnemonicParsing="false" onAction="#FilterClients" prefHeight="44.0" prefWidth="139.0" style="-fx-background-color: white;" text="Utilisateurs">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="AdminFilterBtn" mnemonicParsing="false" onAction="#FilterAdministrateur" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: white;" text="Administrateur">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Pane layoutX="11.0" layoutY="226.0" prefHeight="34.0" prefWidth="829.0">
+         <children>
+            <Label layoutX="5.0" layoutY="4.0" text="Image" />
+            <Label layoutX="62.0" layoutY="4.0" text="Nom et prenom" />
+            <Label layoutX="541.0" layoutY="4.0" text="Role" />
+            <Label layoutX="431.0" layoutY="4.0" text="Telephone" />
+            <Label layoutX="314.0" layoutY="4.0" text="Email" />
+            <Label layoutX="193.0" layoutY="4.0" text="CIN" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="11.0" layoutY="260.0" prefHeight="434.0" prefWidth="829.0" style="-fx-background: transparent; -fx-background-color: transparent;">
+         <content>
+            <VBox fx:id="usersList" prefWidth="829.0">
+               <children>
+                  <Pane prefHeight="55.0" prefWidth="829.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="3.0" layoutY="5.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../assets/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="51.0" layoutY="5.0" prefHeight="44.0" prefWidth="134.0" text="Hassen chouadah" />
+                        <Label layoutX="173.0" layoutY="5.0" prefHeight="44.0" prefWidth="71.0" text="12345678" />
+                        <Label layoutX="247.0" layoutY="5.0" prefHeight="44.0" prefWidth="186.0" text="hassen.chouadah@esprit.tn" />
+                        <Label layoutX="436.0" layoutY="5.0" prefHeight="44.0" prefWidth="71.0" text="55817976" />
+                        <Label layoutX="509.0" layoutY="5.0" prefHeight="44.0" prefWidth="107.0" text="Administrateur" />
+                        <Button layoutX="662.0" layoutY="5.0" maxWidth="56.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="56.0" text="Button" />
+                        <Button layoutX="723.0" layoutY="5.0" maxWidth="56.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="56.0" text="Button" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Pane fx:id="ModalPane" prefHeight="695.0" prefWidth="1060.0" style="-fx-background-color: transparent;" visible="false">
+         <children>
+            <ImageView fitHeight="695.0" fitWidth="1060.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../HAWESproject/src/assets/gradient.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="220.0" layoutY="56.0" prefHeight="292.0" prefWidth="620.0" style="-fx-background-color: white;">
+               <children>
+                  <Button layoutX="584.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeModal" prefHeight="31.0" prefWidth="21.0" text="X" />
+                  <Button layoutX="297.0" layoutY="186.0" mnemonicParsing="false" onAction="#confirmUpadteRole" prefHeight="31.0" prefWidth="95.0" text="Confirmer" />
+                  <Label layoutX="126.0" layoutY="101.0" text="Role" />
+                  <ComboBox fx:id="roleComboBox" layoutX="126.0" layoutY="122.0" prefHeight="31.0" prefWidth="266.0" />
+                  <Label layoutX="67.0" layoutY="38.0" text="Changer le role " />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Button layoutX="261.0" layoutY="118.0" mnemonicParsing="false" onAction="#toExcel">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../assets/download.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
