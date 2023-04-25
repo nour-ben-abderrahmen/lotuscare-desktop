@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaFx.InterfaceProduitController">
+   <children>
+      <BorderPane layoutY="-3.0" prefHeight="658.0" prefWidth="1290.0">
+         <left>
+            <VBox prefHeight="390.0" prefWidth="200.0" style="-fx-background-color: #1e1e2d;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="BASELINE_LEFT" cache="true" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="218.0" style="-fx-background-color: #1e1e2d;" styleClass="mainFxmlClass" stylesheets="@interfaceproduit.css" text="Produit" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/product.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></Button>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <HBox prefHeight="65.0" prefWidth="1100.0" style="-fx-background-color: #1e1e2d;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="66.0" prefWidth="1092.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Pane prefHeight="55.0" prefWidth="390.0">
+                           <HBox.margin>
+                              <Insets left="700.0" top="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="29.0" fitWidth="22.0" layoutX="105.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Assets/search.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="308.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #1e1e2d;" />
+                              <TextField fx:id="filterField" layoutX="153.0" layoutY="13.0" onKeyPressed="#filter" onKeyReleased="#filter" onKeyTyped="#filter" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children></HBox>
+         </top>
+         <center>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="1018.0" stylesheets="@interfaceproduit.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Accordion prefHeight="486.0" prefWidth="1018.0">
+                    <panes>
+                      <TitledPane animated="false" prefHeight="418.0" prefWidth="864.0" text="Produits">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="834.0">
+                                 <children>
+                                    <TableView fx:id="table" prefHeight="438.0" prefWidth="614.0">
+                                       <columns>
+                                          <TableColumn fx:id="IDcol" minWidth="0.0" prefWidth="0.0" text="ID" />
+                                          <TableColumn fx:id="REFcol" prefWidth="87.99999696016312" text="Reference" />
+                                          <TableColumn fx:id="DESCRIPTIONcol" prefWidth="88.00000762939453" text="Description" />
+                                          <TableColumn fx:id="PRIXcol" prefWidth="82.40000915527344" text="Prix" />
+                                          <TableColumn fx:id="QSTOCKcol" prefWidth="124.0" text="Qte_stock" />
+                                          <TableColumn fx:id="CATcol" prefWidth="110.0" text="Categorie" />
+                                       </columns>
+                                    </TableView>
+                                    <Pane layoutX="612.0" prefHeight="430.0" prefWidth="406.0" style="-fx-background-color: #3A98B9;">
+                                       <children>
+                                          <Label layoutX="13.0" layoutY="73.0" text="Reference" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="18.0" layoutY="170.0" text="Prix" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="18.0" layoutY="121.0" text="Description" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="reffx" layoutX="168.0" layoutY="79.0" prefHeight="25.0" prefWidth="71.0" />
+                                          <TextField fx:id="descriptionfx" layoutX="165.0" layoutY="127.0" />
+                                          <TextField fx:id="prixfx" layoutX="168.0" layoutY="176.0" />
+                                          <Label layoutX="15.0" layoutY="312.0" text="Categorie" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="fxCategorieChoiceBox" layoutX="168.0" layoutY="313.0" prefWidth="150.0" />
+                                          <Button fx:id="btnsupprimer11" layoutX="163.0" layoutY="353.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: #3A98B9;" text="AjouterCategorie" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnmodifier" layoutX="156.0" layoutY="385.0" mnemonicParsing="false" onAction="#modifier_Produit" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #3A98B9;" text="Modifier" textFill="WHITE">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Assets/pen.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnsupprimer" layoutX="6.0" layoutY="386.0" mnemonicParsing="false" onAction="#supprimer_Produit" prefHeight="36.0" prefWidth="128.0" style="-fx-background-color: #3A98B9;" text="Supprimer" textFill="WHITE">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fitHeight="18.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button layoutX="347.0" layoutY="379.0" mnemonicParsing="false" onAction="#ToPdf" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: #3A98B9;">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Button>
+                                          <Button layoutX="307.0" layoutY="379.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: #3A98B9;">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Button>
+                                          <TextField fx:id="imgfx" layoutX="168.0" layoutY="220.0" prefHeight="25.0" prefWidth="63.0" />
+                                          <Label layoutX="15.0" layoutY="220.0" text="Image" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="15.0" layoutY="265.0" text="Qte Stock" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="qstockfx" layoutX="168.0" layoutY="266.0" />
+                                          <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="330.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Assets/download-pdf.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="btnUpload" layoutX="266.0" layoutY="221.0" mnemonicParsing="false" onAction="#importerImageUpdate" text="upload" />
+                                          <ImageView fx:id="image_update" fitHeight="108.0" fitWidth="150.0" layoutX="244.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label layoutX="17.0" layoutY="14.0" text="Product Details">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" prefHeight="402.0" prefWidth="839.0" text="Ajouter Produit">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Pane prefHeight="435.0" prefWidth="1019.0" style="-fx-background-color: #3A98B9;">
+                                       <children>
+                                          <Label layoutX="37.0" layoutY="58.0" text="Reference" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="465.0" layoutY="54.0" text="Prix" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="37.0" layoutY="113.0" text="Description" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="reffx1" layoutX="168.0" layoutY="61.0" />
+                                          <TextField fx:id="descriptionfx1" layoutX="168.0" layoutY="116.0" />
+                                          <TextField fx:id="prixfx1" layoutX="596.0" layoutY="57.0" />
+                                          <Label layoutX="456.0" layoutY="203.0" text="Categorie" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="fxCategorieChoiceBox1" layoutX="595.0" layoutY="209.0" prefWidth="150.0" />
+                                          <Button fx:id="btnsupprimer111" layoutX="593.0" layoutY="265.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: #3A98B9;" text="AjouterCategorie" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnajouter1" layoutX="37.0" layoutY="328.0" mnemonicParsing="false" onAction="#ajouter_Produit" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: #3c94d1;" text="Ajouter" textFill="WHITE">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Button>
+                                          <TextField fx:id="imgfx1" layoutX="168.0" layoutY="178.0" prefHeight="25.0" prefWidth="43.0" />
+                                          <Label layoutX="37.0" layoutY="173.0" text="Image" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="457.0" layoutY="123.0" text="Qte Stok" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="qstockfx1" layoutX="595.0" layoutY="129.0" />
+                                          <Button fx:id="btnUpload" layoutX="242.0" layoutY="178.0" mnemonicParsing="false" onAction="#importerImageUpdate" text="upload" />
+                                          <ImageView fx:id="image_update" fitHeight="108.0" fitWidth="150.0" layoutX="268.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
+               </children></HBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

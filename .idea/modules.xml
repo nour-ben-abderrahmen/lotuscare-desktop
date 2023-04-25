@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/lotuscare-desktop-produits.iml" filepath="$PROJECT_DIR$/lotuscare-desktop-produits.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Pidevjava-GestionProduit.iml" filepath="$PROJECT_DIR$/Pidevjava-GestionProduit.iml" />
     </modules>
   </component>
 </project>
