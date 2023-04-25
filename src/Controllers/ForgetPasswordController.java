@@ -145,10 +145,10 @@ public class ForgetPasswordController implements Initializable {
         // TODO: Implement OTP validation logic here
         System.out.println(otp);
         if (Integer.toString(verificationCode).equals(otp)) {
-            System.out.println("code shih");
+            System.out.println("le code est correct");
             changePasswordModal.setVisible(true);
         } else {
-            System.out.println("code ghalet");
+            System.out.println("le code est incorrect");
         }
     }
 

@@ -1,1 +1,0 @@
-{"image":"183999-luffy being dumb 1.jpg","password":"$2a$13$tbf8PFjje1iKQD4Oq7yVzeI5j0bwu42fTsNuigyHP12tvZdQtM7OO","roles":"[\"ROLE_USER\"]","verified":0,"cin":"12345678","telephone":"52154488","id":47,"nom":"ba","prenom":"nour","verification_code":" ","email":"babderrahmennour@gmail.com"}
