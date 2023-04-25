@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -92,4 +94,26 @@ public class ServiceCommentaire implements Iservicecommentaire <Commentaire>{
             System.out.println(ex.getMessage());
     }
 }
+    
+    public ObservableList<Commentaire> findcomparid(int id){
+        ObservableList<Commentaire>prod=FXCollections.observableArrayList(); 
+        String sql="select * from commentaire where publication_id=? ";
+        PreparedStatement ste;
+        ServicePublication cs=new ServicePublication();
+        try{
+            ste=cnx.prepareStatement(sql);
+            ste.setInt(1, id);
+            ResultSet rs= ste.executeQuery();
+            while(rs.next()){
+                Commentaire c=new Commentaire(rs.getInt(1),rs.getString(3),cs.getPubParId(rs.getInt(2)));
+                prod.add(c);
+            }
+            
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return prod;
+    }
+    
 }

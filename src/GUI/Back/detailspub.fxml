@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="699.0" prefWidth="923.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.DetailspubController">
+   <children>
+      <Label fx:id="titrepub" layoutX="126.0" layoutY="51.0" text="Label" />
+      <Label fx:id="descripub" layoutX="112.0" layoutY="169.0" text="Label" />
+      <ImageView fx:id="imgpub" fitHeight="150.0" fitWidth="200.0" layoutX="112.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tablecom" layoutX="682.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="com" prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

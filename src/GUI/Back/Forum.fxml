@@ -32,7 +32,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <ListView fx:id="liste" layoutX="389.0" layoutY="52.0" onMouseClicked="#HandleMouseAction" prefHeight="772.0" prefWidth="946.0" />
+      <ListView fx:id="liste" layoutX="389.0" layoutY="52.0" onMouseMoved="#HandleMouseAction" prefHeight="772.0" prefWidth="946.0" />
       <TextField fx:id="imageInput" editable="false" layoutX="43.0" layoutY="612.0" prefHeight="28.0" prefWidth="164.0" promptText="Aucun fichier choisi" />
       <Label layoutX="157.0" layoutY="571.0" prefHeight="25.0" prefWidth="116.0" text="Image" textFill="#566a7f">
          <font>

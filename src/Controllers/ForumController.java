@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import GUI.Back.DetailspubController;
 import javafx.scene.control.Button;
 import Models.Publication;
 import javafx.scene.control.TextArea;
@@ -37,6 +38,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -272,14 +274,21 @@ public void initialize(URL url, ResourceBundle rb) {
     
 
     @FXML
-    private void HandleMouseAction(MouseEvent event) {
+    private void HandleMouseAction(MouseEvent event) throws IOException {
         
-         Publication p = (Publication) liste.getSelectionModel().getSelectedItem();
-          id_modif.setText("" +p.getId());
-        codepub.setText("" +p.getCode_pub());
-        contenupub.setText("" +p.getContenu_pub());
-        imageInput.setText(""+p.getUrl_image_pub());
-         deletefield.setText("" +p.getId());
+         
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Back/detailspub.fxml"));
+                    Parent root = loader.load();
+                    Stage st=new Stage();
+                    st.setScene(new Scene(root));
+                    st.setTitle("Detail pub");
+                    DetailspubController dpc=loader.getController();
+                    dpc.getpub(liste.getSelectionModel().getSelectedItem());
+                    Stage st1=(Stage) Refresh.getScene().getWindow();
+                    st1.close();
+                    st.show();
+        
+        
         
     }
 
@@ -374,7 +383,7 @@ ServicePublication sh = new ServicePublication();
                     String imagePath ="File:/C:/xampp/htdocs/New folder/pidev/pidev/Digi-Dreamers/public/uploadsforum/imagespublication/";
                     ImageView imageView = new ImageView(new Image(imagePath+Publication.getUrl_image_pub()));
                     imageView.setFitWidth(300);
-                    imageView.setFitHeight(150);
+                    imageView.setFitHeight(220);
                     HBox hbox1 = new HBox();
                     hbox1.setSpacing(10);
                     hbox1.setAlignment(Pos.CENTER);
