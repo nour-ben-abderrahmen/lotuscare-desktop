@@ -18,7 +18,7 @@
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <WebView fx:id="webView" layoutY="-1.0" prefHeight="323.0" prefWidth="1032.0" />
+            <WebView fx:id="webView" onMouseClicked="#eventMap" prefHeight="323.0" prefWidth="1032.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="15.0" layoutY="353.0" prefHeight="302.0" prefWidth="1032.0" stylesheets="@dashboardDesign.css">
@@ -35,7 +35,7 @@
             <Label layoutX="864.0" layoutY="32.0" text="Image" />
             <Label layoutX="390.0" layoutY="158.0" text="Prix" />
             <TextField fx:id="event_titre" layoutX="29.0" layoutY="42.0" promptText="Titre" />
-            <TextField fx:id="event_lieu" layoutX="23.0" layoutY="106.0" promptText="Lieu" />
+            <TextField fx:id="event_lieu" editable="false" layoutX="23.0" layoutY="106.0" promptText="Lieu" />
             <TextArea fx:id="event_description" layoutX="23.0" layoutY="168.0" prefHeight="85.0" prefWidth="187.0" promptText="Description" />
             <TextField fx:id="event_nbrParticipant" layoutX="380.0" layoutY="38.0" promptText="Places dispo" />
             <DatePicker fx:id="event_date" layoutX="386.0" layoutY="106.0" promptText="Date" />

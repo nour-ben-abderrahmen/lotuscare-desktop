@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane fx:id="root2" prefHeight="543.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EvenementController">
     <children>
@@ -16,6 +17,9 @@
                 <String fx:value="white-bg" />
                 <String fx:value="shadow" />
             </styleClass>
+         <children>
+            <WebView fx:id="webView" layoutY="-1.0" prefHeight="245.0" prefWidth="860.0" />
+         </children>
         </AnchorPane>
         <AnchorPane layoutX="14.0" layoutY="265.0" prefHeight="264.0" prefWidth="860.0" stylesheets="@dashboardDesign.css">
             <styleClass>
@@ -31,7 +35,7 @@
                 <Label layoutX="700.0" layoutY="22.0" text="Image" />
                 <Label layoutX="329.0" layoutY="147.0" text="Prix" />
                 <TextField fx:id="event_titre" layoutX="29.0" layoutY="42.0" promptText="Titre" />
-                <TextField fx:id="event_lieu" layoutX="23.0" layoutY="106.0" promptText="Lieu" />
+                <TextField fx:id="event_lieu" editable="false" layoutX="23.0" layoutY="106.0" promptText="Lieu" />
                 <TextArea fx:id="event_description" layoutX="23.0" layoutY="168.0" prefHeight="85.0" prefWidth="187.0" promptText="Description" />
                 <TextField fx:id="event_nbrParticipant" layoutX="325.0" layoutY="42.0" promptText="Places dispo" />
                 <DatePicker fx:id="event_date" layoutX="327.0" layoutY="106.0" promptText="Date" />

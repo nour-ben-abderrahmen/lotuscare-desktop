@@ -38,7 +38,7 @@ public class Lotuscare extends Application {
                 SU = new ServiceUser();
                 SU.updateCurrentUser(storedUser);
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front/eventsFront.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Back/Template.fxml"));
                     Scene scene = new Scene(root, 1366, 768);
                     primaryStage.setTitle("Lotuscare");
                     primaryStage.setScene(scene);

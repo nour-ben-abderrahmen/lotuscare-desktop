@@ -19,7 +19,7 @@ public class EvenementServiceImp implements EvenementService {
     @Override
     public void addEvent(Evenement event) throws SQLException {
         PreparedStatement ps =connection.prepareStatement(
-                "insert into evenement(titre,lieu,nbr_participant,date,description,total,prix,url_image,lat,lon) values(?,?,?,?,?,?,?,?,?,?)");
+                "insert into evenement(titre,lieu,nbr_participant,date,description,total,prix,url_image,lat,lon,gouv) values(?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1,event.getTitre());
         ps.setString(2,event.getLieu());
         ps.setInt(3,event.getNbr_participant());
@@ -30,6 +30,7 @@ public class EvenementServiceImp implements EvenementService {
         ps.setString(8,event.getUrl_image());
         ps.setString(9,event.getLat());
         ps.setString(10,event.getLon());
+        ps.setString(11,event.getGouv());
         ps.executeUpdate();
         ps.close();
     }
@@ -47,9 +48,9 @@ public class EvenementServiceImp implements EvenementService {
     }
 
     @Override
-    public void updateEvent(int id,String titre,String lieu, int nbr_participant,Date date,String description,Float prix,String url_image) throws SQLException {
+    public void updateEvent(int id,String titre,String lieu, int nbr_participant,Date date,String description,Float prix,String url_image,String lat,String lon,String gouv) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(
-                "UPDATE evenement SET titre=?,lieu=?,nbr_participant=?,date=?,description=?,prix=?,url_image=? where id = ?");
+                "UPDATE evenement SET titre=?,lieu=?,nbr_participant=?,date=?,description=?,prix=?,url_image=?,lat=?,lon=?,gouv=? where id = ?");
         ps.setString(1,titre);
         ps.setString(2,lieu);
         ps.setInt(3,nbr_participant);
@@ -58,7 +59,10 @@ public class EvenementServiceImp implements EvenementService {
 
         ps.setFloat(6,prix);
         ps.setString(7,url_image);
-        ps.setInt(8,id);
+        ps.setString(8,lat);
+        ps.setString(9,lon);
+        ps.setString(10,gouv);
+        ps.setInt(11,id);
         ps.executeUpdate();
         ps.close();
         System.out.println("update d un evenement avec succés");
@@ -159,6 +163,33 @@ public class EvenementServiceImp implements EvenementService {
         List<Evenement> events = new ArrayList<>();
 
         PreparedStatement ps = connection.prepareStatement("select * from evenement where evenement.date < CURDATE() and evenement.total > 0");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            Evenement event=new Evenement();
+            event.setId(rs.getInt("id"));
+            event.setTitre(rs.getString("titre"));
+            event.setDescription(rs.getString("description"));
+            event.setDate(rs.getDate("date"));
+            event.setLieu(rs.getString("lieu"));
+            event.setNbr_participant(rs.getInt("nbr_participant"));
+            event.setTotal(rs.getFloat("total"));
+            event.setPrix(rs.getFloat("prix"));
+            event.setUrl_image(rs.getString("url_image"));
+            event.setLat(rs.getString("lat"));
+            event.setLon(rs.getString("lon"));
+            event.setGouv(rs.getString("gouv"));
+
+
+            events.add(event);
+        }
+        ps.close();
+        return events;
+    }
+    @Override
+    public List<Evenement> getAllUpcomingEvents() throws SQLException {
+        List<Evenement> events = new ArrayList<>();
+
+        PreparedStatement ps = connection.prepareStatement("select * from evenement where evenement.date > CURDATE() ");
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             Evenement event=new Evenement();

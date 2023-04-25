@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-qZ1YERkhx1DgG9yRrKOz4NALwLHilfc&callback=initMap" async defer></script>
+</head>
+<body>
+
+<div id="map" style="height: 400px;"></div>
+<script>
+
+  var latitude=null;
+  var longitude=null;
+  var lieu = null;
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 36.866537, lng: 10.164723},
+      zoom: 15
+    });
+
+    var geocoder = new google.maps.Geocoder();
+    google.maps.event.addListener(map, 'click', function(event) {
+
+      function getLieu(latitude, longitude) {
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyC-qZ1YERkhx1DgG9yRrKOz4NALwLHilfc`;
+
+        fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                  const addressComponents = data.results[0].address_components;
+                  let city = null;
+                  let governorate = null;
+                  let country = null;
+
+                  for (let i = 0; i < addressComponents.length; i++) {
+                    const types = addressComponents[i].types;
+                    for (let j = 0; j < types.length; j++) {
+                      if (types[j] === 'locality') {
+                        city = addressComponents[i].long_name;
+                      } else if (types[j] === 'administrative_area_level_1') {
+                        governorate = addressComponents[i].long_name;
+                      } else if (types[j] === 'country') {
+                        country = addressComponents[i].long_name;
+                      }
+                    }
+                  }
+
+                  console.log(`City: ${city}`);
+                  console.log(`Governorate: ${governorate}`);
+                  console.log(`Country: ${country}`);
+                  lieu= `${city},${governorate},${country}`
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+        return lieu
+      }
+
+      geocoder.geocode({'location': event.latLng}, function(results, status) {
+
+        if (status === 'OK') {
+
+          if (results[0]) {
+
+            console.log(event.latLng.lng());
+            console.log(event.latLng.lat());
+
+
+
+
+            var marker = new google.maps.Marker({
+              position: {lat:event.latLng.lat() , lng:event.latLng.lng()},
+              map: map
+            });
+             latitude =  event.latLng.lat();
+             longitude = event.latLng.lng();
+            javaConnector.getLatLng(latitude,longitude,getLieu(latitude,longitude));
+
+
+          } else {
+            console.log('No results found');
+          }
+
+        } else {
+          console.log('Geocoder failed due to: ' + status);
+
+        }
+      });
+    });
+
+
+
+
+
+
+  }
+
+    window.addEventListener('load', initMap);
+</script>
+
+</body>
+</html>

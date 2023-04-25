@@ -3,11 +3,15 @@ package Controllers;
 import Interfaces.Mylistener;
 import Models.Evenement;
 import Services.EvenementServiceImp;
+import Services.TwilioService;
 import Tools.Statics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import netscape.javascript.JSObject;
+import org.w3c.dom.Document;
+
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +30,6 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import netscape.javascript.JSObject;
-
 
 import java.io.File;
 import java.io.IOException;
@@ -38,8 +40,10 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class EvenementController  {
@@ -102,6 +106,12 @@ public class EvenementController  {
 
 private File file = null;
 private Image image = null;
+    /** for communication to the Javascript engine. */
+    private JSObject javascriptConnector;
+
+    /** for communication from the Javascript engine. */
+    private JavaConnector javaConnector = new JavaConnector();;
+
     @FXML
     private TextField event_lieu;
 
@@ -142,6 +152,8 @@ private Image image = null;
     private String url_image=null;
 
     Evenement event1 = null;
+    private String lat="",lon="";
+
 
     EvenementServiceImp evenementServiceImp = new EvenementServiceImp();
     public void showListEvent() throws SQLException {
@@ -191,14 +203,22 @@ private Image image = null;
             Alert alert;
 
             if (event_titre.getText().isEmpty()
-                    || event_description.getText().isEmpty()
+                    || event_description.getText().isEmpty() || event_nbrParticipant.getText().isEmpty() || event_lieu.getText().isEmpty()
+                    || event_date.getValue() == null
             ) {
+
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Les champs sont obligatoires");
                 alert.showAndWait();
-            } else {
+            } else if ( event_date.getValue().isBefore(LocalDate.now())){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Date invalide");
+                alert.showAndWait();
+            }else {
 
                 Evenement event = new Evenement();
                 event.setTitre(event_titre.getText());
@@ -212,9 +232,12 @@ private Image image = null;
                 Files.copy(file.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
 
                 event.setUrl_image(Statics.uploadDirectory2 + url_image);
-                event.setLon("222");
-                event.setLat("55");
-                event.setGouv("Medenine");
+                event.setLon(lon);
+                event.setLat(lat);
+                String[] parts = event_lieu.getText().split(",");
+                String gouv = parts[1];
+                System.out.println(gouv);
+                event.setGouv(gouv);
                 event.setTotal(0);
 
 
@@ -376,14 +399,21 @@ private Image image = null;
 
             if (event_titre.getText().isEmpty()
                     || event_description.getText().isEmpty()  || event_prix.getText().isEmpty() || event_lieu.getText().isEmpty()
-                    || event_nbrParticipant.getText().isEmpty()
+                    || event_nbrParticipant.getText().isEmpty() || event_date.getValue()== null
             ) {
+
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Les champs sont obligatoires");
                 alert.showAndWait();
-            } else {
+            }else if  ( event_date.getValue().isBefore(LocalDate.now())){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Date invalide");
+                alert.showAndWait();
+            } else  {
 
 
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -396,8 +426,18 @@ private Image image = null;
                     Path destPath = Paths.get(Statics.uploadDirectory2 + url_image);
                     url_image = Statics.uploadDirectory2 + url_image;
                     Files.copy(file.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
-                    evenementServiceImp.updateEvent(Integer.parseInt(event_id.getText()),event_titre.getText(),event_lieu.getText(),Integer.parseInt(event_nbrParticipant.getText()),Date.valueOf(event_date.getValue()),event_description.getText(),Float.valueOf(event_prix.getText()),url_image);
+
+                    String[] parts = event_lieu.getText().split(",");
+                    String gouv = parts[1];
+
+
+                    evenementServiceImp.updateEvent(Integer.parseInt(event_id.getText()),event_titre.getText(),event_lieu.getText(),Integer.parseInt(event_nbrParticipant.getText()),Date.valueOf(event_date.getValue()),event_description.getText(),Float.valueOf(event_prix.getText()),url_image,lat,lon,gouv);
                     // TWILIOO !!!!!!!!!!!!!!!
+
+                    String messageText = "The event \"" +event_titre.getText()  + "\" has been updated. " ;
+                    TwilioService.sendSms("+21653237570",messageText);
+
+                    //
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -453,41 +493,14 @@ private Image image = null;
         event1=event;
 
     }
+
+    
     public void eventMap(){
-        WebEngine webEngine =webView.getEngine();
-        webEngine.load("https://maps.google.com/maps?t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed");
-        webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == Worker.State.SUCCEEDED) {
-                JSObject window = (JSObject) webEngine.executeScript("window");
 
-                window.setMember("app", this);
 
-                String script = "var map = new google.maps.Map(document.getElementById('map'), {\n" +
-                        "    center: {lat: 33.886917, lng: 9.537499},\n" +
-                        "    zoom: 30\n" +
-                        "});\n" +
-                        "var marker = new google.maps.Marker({\n" +
-                        "    position: {lat: 33.886917, lng: 9.537499},\n" +
-                        "    map: map,\n" +
-                        "google.maps.event.addListener(marker, 'click', function() {\n" +
-                        "   var position = marker.getPosition();\n" +
-                            "          var latitude = position.lat();\n" +
-                            "          var longitude = position.lng();\n" +
-                            "          java.getLatLng(latitude, longitude);\n" +
-                            "        });\n"+
-                        "});";
-                window.setMember("java", new Object() {
-                    public void getLatLng(double latitude, double longitude) {
-                        System.out.println("Latitude : " + latitude + ", Longitude : " + longitude);
-                    }
-                });
-                webEngine.executeScript(script);
 
-            }
 
-        });
-
-    }
+       }
     @FXML
     void initialize() throws SQLException {
         if (eventTableView != null) {
@@ -495,7 +508,7 @@ private Image image = null;
         }
 
         if (scroll != null){
-            List<Evenement> events = evenementServiceImp.getAllEvents();
+            List<Evenement> events = evenementServiceImp.getAllUpcomingEvents();
             if (events.size()>0){
                 setChosenEvent(events.get(0));
                 mylistener = new Mylistener() {
@@ -535,9 +548,27 @@ private Image image = null;
 
 
         }
-        if (webView!=null){
-            eventMap();
-        }
+       if (webView!=null){
 
+           WebEngine webEngine = webView.getEngine();
+           webEngine.load(getClass().getResource("/GUI/Back/map.html").toExternalForm());
+           webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+               if (Worker.State.SUCCEEDED == newValue) {
+                   // set an interface object named 'javaConnector' in the web engine's page
+                   JSObject window = (JSObject) webEngine.executeScript("window");
+                   window.setMember("javaConnector", javaConnector);
+
+                   }
+           });
+       }
     }
+    public class JavaConnector {
+
+        public void getLatLng(String value,String lng,String lieu) {
+            lat=value;
+            lon=lng;
+            event_lieu.setText(lieu);
+        }
+    }
+
 }

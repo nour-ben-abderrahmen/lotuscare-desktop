@@ -209,8 +209,6 @@ public void associationUpdate()  {
     void initialize() throws SQLException {
     showListAssociation();
 
-
-
     }
 
 }
