@@ -1,21 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="699.0" prefWidth="923.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.DetailspubController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1300.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back.DetailspubController">
    <children>
-      <Label fx:id="titrepub" layoutX="126.0" layoutY="51.0" text="Label" />
-      <Label fx:id="descripub" layoutX="112.0" layoutY="169.0" text="Label" />
-      <ImageView fx:id="imgpub" fitHeight="150.0" fitWidth="200.0" layoutX="112.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
-      <TableView fx:id="tablecom" layoutX="682.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0">
+      <Label fx:id="titrepub" layoutX="328.0" layoutY="66.0" text="Label">
+         <font>
+            <Font size="32.0" />
+         </font></Label>
+      <Label fx:id="descripub" layoutX="101.0" layoutY="210.0" text="Label">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+      <ImageView fx:id="imgpub" fitHeight="150.0" fitWidth="200.0" layoutX="748.0" layoutY="204.0" onMouseClicked="#sendid2" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tablecom" layoutX="99.0" layoutY="475.0" onMouseClicked="#sendid" prefHeight="282.0" prefWidth="609.0">
         <columns>
-          <TableColumn fx:id="com" prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="com" prefWidth="584.0" text="Commentaires" />
+          <TableColumn minWidth="0.0" prefWidth="0.0" text="C2" />
         </columns>
       </TableView>
+      <Button fx:id="retour" layoutX="1197.0" layoutY="831.0" mnemonicParsing="false" onMouseClicked="#retour" text="Retour" />
+      <TextField fx:id="idpc" layoutX="169.0" layoutY="419.0" opacity="0.0" />
+      <TextField fx:id="id_modif2" layoutX="54.0" layoutY="438.0" onAction="#editc" opacity="0.0" />
+      <TextField fx:id="deletefield2" layoutX="182.0" layoutY="438.0" onAction="#deletec" opacity="0.0" />
+      <Button fx:id="deletec" layoutX="597.0" layoutY="811.0" mnemonicParsing="false" onAction="#deletec" text="Supprimer com" />
+      <Button fx:id="editc" layoutX="101.0" layoutY="811.0" mnemonicParsing="false" onAction="#editc" text="Modifier com" />
+      <Button fx:id="addc" layoutX="454.0" layoutY="811.0" mnemonicParsing="false" onAction="#addc" text="Ajouter com" />
+      <TextArea fx:id="concom" layoutX="243.0" layoutY="811.0" prefHeight="39.0" prefWidth="200.0" />
+      <TextArea fx:id="contenupub" layoutX="885.0" layoutY="606.0" prefHeight="47.0" prefWidth="200.0" />
+      <TextField fx:id="codepub" layoutX="911.0" layoutY="536.0" />
+      <Button fx:id="btdelete" layoutX="1007.0" layoutY="831.0" mnemonicParsing="false" onAction="#suppub" text="Supprimer" />
+      <Button fx:id="editpub" layoutX="866.0" layoutY="832.0" mnemonicParsing="false" onAction="#editpub" text="Modifier" />
+      <TextField fx:id="deletefield" layoutX="748.0" layoutY="788.0" opacity="0.0" />
+      <TextField fx:id="id_modif" layoutX="748.0" layoutY="827.0" opacity="0.0" />
+      <Label layoutX="969.0" layoutY="488.0" text="Titre">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="945.0" layoutY="568.0" text="Description">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="imageInput" editable="false" layoutX="833.0" layoutY="740.0" prefHeight="28.0" prefWidth="164.0" promptText="Aucun fichier choisi" />
+      <Label layoutX="947.0" layoutY="699.0" prefHeight="25.0" prefWidth="116.0" text="Image" textFill="#566a7f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="1005.0" layoutY="734.0" mnemonicParsing="false" onAction="#browseAction" prefHeight="28.0" prefWidth="134.0" text="Choisir un fichier" />
    </children>
 </AnchorPane>

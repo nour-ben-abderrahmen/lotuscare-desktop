@@ -4,11 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/GUI/Back/DetailspubController.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/GUI/Back/CommentaireController.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/Controllers/ForumController.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/lotuscare/Publication.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/Services/ServiceCommentaire.java</file>
-            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/Services/ServicePublication.java</file>
+            <file>file:/C:/xampp/htdocs/JavaFx/lotuscare-desktop/src/GUI/Back/ForumBackController.java</file>
         </group>
     </open-files>
 </project-private>

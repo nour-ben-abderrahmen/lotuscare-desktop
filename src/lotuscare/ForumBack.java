@@ -20,7 +20,10 @@ import javafx.stage.Stage;
  *
  * @author Omar
  */
-public class Publication extends Application {
+public class ForumBack extends Application {
+
+    
+    
     
     @Override
     public void start(Stage primaryStage) {

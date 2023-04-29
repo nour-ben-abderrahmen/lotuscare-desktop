@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author Omar
  */
-public class Commentaire extends Application {
+public class ForumFront extends Application {
     
     @Override
     public void start(Stage primaryStage) {

@@ -124,7 +124,7 @@ public void initialize(URL url, ResourceBundle rb) {
                         
                         Publication p=sh.getPubParId(Publication.getId());
                         
-                        String data=Statics.URL+"Le titre est  "+p.getCode_pub()+" et le contenu "+p.getContenu_pub();
+                        String data=Statics.URL+p.getCode_pub();
                        
                         try{
                             generateQRCode(data,newFileName);
@@ -154,8 +154,8 @@ public void initialize(URL url, ResourceBundle rb) {
                     /////////////
                     String imagePath ="File:/C:/xampp/htdocs/New folder/pidev/pidev/Digi-Dreamers/public/uploadsforum/imagespublication/";
                     ImageView imageView = new ImageView(new Image(imagePath+Publication.getUrl_image_pub()));
-                    imageView.setFitWidth(300);
-                    imageView.setFitHeight(150);
+                    imageView.setFitWidth(400);
+                    imageView.setFitHeight(200);
                     HBox hbox1 = new HBox();
                     hbox1.setSpacing(10);
                     hbox1.setAlignment(Pos.CENTER);

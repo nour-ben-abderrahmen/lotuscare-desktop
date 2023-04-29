@@ -6,6 +6,7 @@
 //package lotuscare;
 //
 //import Services.ServiceCommentaire;
+//import Services.ServicePublication;
 //import java.sql.SQLException;
 //
 ///**
@@ -18,8 +19,9 @@
 //     * @param args the command line arguments
 //     */
 //    public static void main(String[] args) throws SQLException {
-//       ServiceCommentaire com= new ServiceCommentaire();
-//        System.out.println(com.affcom());
+//        Publication p =new Publication ("aaaaaaaa","aaaaaaaaaa","aaaaaaaaaaa");
+//       ServicePublication com= new ServicePublication();
+//       
 //    }
 //    
 //}
